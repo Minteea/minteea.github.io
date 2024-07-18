@@ -7,6 +7,7 @@ import { remarkModifiedTime } from "./plugins/remark-modified-time";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://minteea.github.io",
   integrations: [tailwind(), mdx(), preact()],
   markdown: {
     remarkPlugins: [],
