@@ -7,7 +7,7 @@
       }
     ],
     "verbatimModuleSyntax": true,
-    "baseUrl": "D:/minteea-site",
+    "baseUrl": ".",
     "paths": {
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
