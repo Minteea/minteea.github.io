@@ -55,6 +55,10 @@ p {
   list-style: circle;
   padding-left: 1.5em;
 }
+.content ol {
+  list-style: decimal;
+  padding-left: 1.5em;
+}
 .content li {
   @apply my-1;
 }
@@ -66,4 +70,10 @@ p {
   border: 1px solid gray;
   padding: 4px;
   white-space: nowrap;
+}
+blockquote {
+  color: gray;
+  background-color: #eeeeee;
+  padding: 1px 1em;
+  border-left: 4px solid #cccccc;
 }

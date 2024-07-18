@@ -143,6 +143,13 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".mdx"] };
+"live-audience-funny-rule.md": {
+	id: "live-audience-funny-rule.md";
+  slug: "live-audience-funny-rule";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
 "live-audience-instruction-appendix.md": {
 	id: "live-audience-instruction-appendix.md";
   slug: "live-audience-instruction-appendix";
