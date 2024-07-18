@@ -20,11 +20,7 @@ const { link, data } = Astro.props;
     <div class="p-2">
       <div class="text-base font-bold line-clamp-1">{data.title}</div>
       <div class="text-sm">
-        <FormattedDate
-          client:load
-          date={data.date}
-          format="YYYY-MM-DD HH:mm:ss"
-        />
+        <FormattedDate client:load date={data.date} format="YYYY-MM-DD" />
       </div>
     </div>
   </div>
