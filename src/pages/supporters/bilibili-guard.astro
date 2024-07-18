@@ -1,0 +1,16 @@
+---
+import LayoutContent from "@layouts/LayoutContent.astro";
+
+interface Props {
+  data: Record<string, any>;
+}
+
+const { data } = Astro.props;
+
+const PAGE_TITLE = "bilibili舰长记录 - A cup of Minteea 🍵";
+const PAGE_DESCRIPTION = "Minteea的个人小站";
+---
+
+<LayoutContent pageTitle={PAGE_TITLE} pageDescription={PAGE_DESCRIPTION}>
+  敬请期待……
+</LayoutContent>

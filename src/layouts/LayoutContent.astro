@@ -1,0 +1,21 @@
+---
+import Navbar from "@components/Navbar.astro";
+import Footer from "@components/Footer.astro";
+import "@styles/globals.css";
+import LayoutBase from "./LayoutBase.astro";
+
+interface Props {
+  pageTitle: string;
+  pageDescription?: string;
+}
+
+const { pageTitle, pageDescription } = Astro.props;
+---
+
+<LayoutBase pageTitle={pageTitle} pageDescription={pageDescription}>
+  <Navbar class="container" />
+  <main class="flex-grow container py-10">
+    <slot />
+  </main>
+  <Footer />
+</LayoutBase>

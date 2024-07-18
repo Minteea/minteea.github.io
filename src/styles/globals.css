@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground: #000000;
+  --background: #ffffff;
+  --page-background: #f0f0f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground: #ffffff;
+    --background: #000000;
+    --page-background: #202020;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--page-background);
+}
+
+.bg {
+  background: var(--background);
+}
+
+h1 {
+  @apply text-2xl;
+  @apply font-bold;
+  @apply mt-4 mb-2;
+}
+
+h2 {
+  @apply text-xl;
+  @apply font-bold;
+  @apply mt-3 mb-2;
+}
+
+h3 {
+  @apply text-lg;
+  @apply font-bold;
+  @apply mt-3 mb-2;
+}
+h4 {
+  @apply text-base;
+  @apply font-bold;
+  @apply mt-3 mb-2;
+}
+p {
+  @apply my-2;
+}
+
+.content ul {
+  list-style: circle;
+  padding-left: 1.5em;
+}
+.content li {
+  @apply my-1;
+}
+.content a {
+  @apply text-gray-500;
+}
+.content th,
+.content td {
+  border: 1px solid gray;
+  padding: 4px;
+  white-space: nowrap;
+}

@@ -1,0 +1,20 @@
+---
+interface Props {
+  transparent?: boolean;
+  class?: string;
+}
+
+const { transparent, class: className = "" } = Astro.props;
+---
+
+<footer class=`footer text-center ${transparent ? "" : "bg"}`></footer>
+
+<style>
+  .footer {
+    margin-top: auto;
+  }
+</style>
+<script>
+  document.querySelector("footer").innerText =
+    `Minteea ${new Date().getFullYear()}`;
+</script>

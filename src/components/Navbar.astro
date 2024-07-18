@@ -1,0 +1,62 @@
+---
+interface Props {
+  transparent?: boolean;
+  class?: string;
+}
+
+const { transparent, class: className = "" } = Astro.props;
+---
+
+<nav class={`navbar ${transparent ? "" : "bg"}`}>
+  <div class={"navbar-content " + className}>
+    <div class="navbar-left">
+      <div class="navbar-logo">
+        <a href="/">Minteea</a>
+      </div>
+    </div>
+    <div class="navbar-right">
+      <ul class="navbar-list">
+        <li><a href="/creation">创作</a></li>
+        <li><a href="/profile">档案</a></li>
+        <li><a href="/blog">博客</a></li>
+        <li><a href="/about">关于</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<style is:global lang="scss">
+  .navbar {
+    --navbar-height: 40px;
+  }
+  .navbar-content {
+    height: var(--navbar-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    > div {
+      height: 100%;
+    }
+  }
+  .navbar-logo {
+    height: 100%;
+    font-weight: bold;
+    a {
+      display: block;
+      height: 100%;
+      line-height: var(--navbar-height);
+    }
+  }
+  .navbar-list {
+    height: 100%;
+    display: flex;
+    gap: 8px;
+    li {
+      height: 100%;
+      a {
+        display: block;
+        height: 100%;
+        line-height: var(--navbar-height);
+      }
+    }
+  }
+</style>

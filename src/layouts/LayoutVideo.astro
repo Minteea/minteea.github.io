@@ -1,0 +1,36 @@
+---
+import VideoPlayer from "@components/VideoPlayer";
+import LayoutContent from "./LayoutContent.astro";
+
+interface Props {
+  data: Record<string, any>;
+}
+
+const { data } = Astro.props;
+
+const { title, description, date, cover } = data;
+---
+
+<LayoutContent pageTitle={title} pageDescription={description}>
+  <header class="bg h-[120px] mb-4 flex justify-between">
+    <div class="px-4 py-4">
+      <h1>{title}</h1>
+      <div class="text-sm">
+        {new Date(date).toLocaleDateString()}
+      </div>
+    </div>
+    <img
+      src={cover || ""}
+      width={"auto"}
+      referrerpolicy="no-referrer"
+      alt={title}
+      class="bg-gray-400 aspect-video"
+    />
+  </header>
+  <div class="bg mb-2">
+    <VideoPlayer data={data as any} client:load />
+  </div>
+  <main class="content bg min-h-[200px] px-4 py-4">
+    <slot />
+  </main>
+</LayoutContent>

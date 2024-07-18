@@ -1,0 +1,20 @@
+---
+import ListCardVideo from "@components/content/ListCardVideo.astro";
+import LayoutContent from "@layouts/LayoutContent.astro";
+import { videoEntries } from "@utils/contentEntries";
+const PAGE_TITLE = "A cup of Minteea 🍵";
+const PAGE_DESCRIPTION = "Minteea的个人小站";
+---
+
+<LayoutContent pageTitle={PAGE_TITLE} pageDescription={PAGE_DESCRIPTION}>
+  <h1>创作</h1>
+  <ul class="flex flex-col gap-2">
+    {
+      videoEntries.map(({ slug, data }) => (
+        <li>
+          <ListCardVideo link={`/video/${slug}`} data={data} />
+        </li>
+      ))
+    }
+  </ul>
+</LayoutContent>

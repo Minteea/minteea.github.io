@@ -1,0 +1,19 @@
+---
+import type { PostData } from "@utils/types";
+
+interface Props {
+  link: string;
+  data: Partial<PostData>;
+}
+
+const { link, data } = Astro.props;
+---
+
+<a href={link}>
+  <div class="w-full bg p-2">
+    <div class="text-base font-bold line-clamp-1">{data.title}</div>
+    <div class="text-sm">
+      {new Date(data.updated || data.date).toLocaleDateString()}
+    </div>
+  </div>
+</a>

@@ -1,0 +1,21 @@
+{
+  "extends": "astro/tsconfigs/base",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "@astrojs/ts-plugin"
+      }
+    ],
+    "verbatimModuleSyntax": true,
+    "baseUrl": "D:/minteea-site",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@styles/*": ["src/styles/*"],
+      "@utils/*": ["src/utils/*"],
+      "@data/*": ["src/data/*"]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  }
+}

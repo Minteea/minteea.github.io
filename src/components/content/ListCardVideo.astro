@@ -1,0 +1,20 @@
+---
+import type { VideoData } from "@utils/types";
+
+interface Props {
+  link: string;
+  data: Partial<VideoData>;
+}
+
+const { link, data } = Astro.props;
+---
+
+<a href={link}>
+  <div class="w-full flex bg h-[90px]">
+    <img src={data.cover} class="w-[160px] object-cover" />
+    <div class="p-2">
+      <div class="text-base font-bold line-clamp-1">{data.title}</div>
+      <div class="text-sm">{new Date(data.date).toLocaleDateString()}</div>
+    </div>
+  </div>
+</a>

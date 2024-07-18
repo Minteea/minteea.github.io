@@ -1,0 +1,27 @@
+---
+import LayoutContent from "./LayoutContent.astro";
+
+interface Props {
+  data: Record<string, any>;
+}
+
+const { data } = Astro.props;
+
+const { title, description, date, updated } = data;
+---
+
+<LayoutContent
+  pageTitle={`${title} - A cup of Minteea 🍵`}
+  pageDescription={description}
+>
+  <main class="post-content content bg min-h-[200px] px-8 py-4">
+    <header>
+      <h1 class="mb-2">{title}</h1>
+      <div class="text-sm">
+        {new Date(updated || date).toLocaleDateString()}
+      </div>
+    </header>
+    <hr class="mt-2 mb-4" />
+    <slot />
+  </main>
+</LayoutContent>
