@@ -1,25 +1,45 @@
 ---
+import MinteeaLogo from "./MinteeaLogo.astro";
+
 interface Props {
   transparent?: boolean;
   class?: string;
 }
 
 const { transparent, class: className = "" } = Astro.props;
+
+const navList: { name: string; label: string; matches?: string[] }[] = [
+  { name: "creation", label: "创作" },
+  { name: "profile", label: "档案" },
+  { name: "blog", label: "博客", matches: ["article", "post"] },
+  { name: "about", label: "关于" },
+];
+
+const currentPart = Astro.url.pathname.split("/")[1];
 ---
 
 <nav class={`navbar ${transparent ? "" : "bg"}`}>
   <div class={"navbar-content " + className}>
     <div class="navbar-left">
       <div class="navbar-logo">
-        <a href="/">Minteea</a>
+        <a href="/"><MinteeaLogo /></a>
       </div>
     </div>
     <div class="navbar-right">
       <ul class="navbar-list">
-        <li><a href="/creation">创作</a></li>
-        <li><a href="/profile">档案</a></li>
-        <li><a href="/blog">博客</a></li>
-        <li><a href="/about">关于</a></li>
+        {
+          navList.map(({ name, label, matches }) => (
+            <li
+              class={
+                currentPart == name || matches?.includes(currentPart)
+                  ? "is-active"
+                  : ""
+              }
+            >
+              <a href={`/${name}`}>{label}</a>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </div>
@@ -41,9 +61,10 @@ const { transparent, class: className = "" } = Astro.props;
     height: 100%;
     font-weight: bold;
     a {
-      display: block;
+      display: flex;
       height: 100%;
       line-height: var(--navbar-height);
+      align-items: center;
     }
   }
   .navbar-list {
@@ -57,6 +78,13 @@ const { transparent, class: className = "" } = Astro.props;
         height: 100%;
         line-height: var(--navbar-height);
       }
+      &.is-active {
+        font-weight: bold;
+      }
     }
+  }
+  .minteea-logo {
+    fill: black;
+    height: 20px;
   }
 </style>

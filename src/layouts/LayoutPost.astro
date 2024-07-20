@@ -1,6 +1,7 @@
 ---
 import FormattedDate from "@components/FormattedDate";
 import LayoutContent from "./LayoutContent.astro";
+import { getPageTitle } from "@utils/getPageTitle";
 
 interface Props {
   data: Record<string, any>;
@@ -12,7 +13,7 @@ const { title, description, date, updated } = data;
 ---
 
 <LayoutContent
-  pageTitle={`${title} - A cup of Minteea 🍵`}
+  pageTitle={`${getPageTitle(title)} - A cup of Minteea 🍵`}
   pageDescription={description}
 >
   <main class="post-content content bg min-h-[200px] px-8 py-4">

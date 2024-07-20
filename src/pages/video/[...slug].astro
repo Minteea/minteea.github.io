@@ -14,6 +14,6 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<LayoutVideo data={entry.data as any}>
+<LayoutVideo data={entry.data}>
   <Content />
 </LayoutVideo>

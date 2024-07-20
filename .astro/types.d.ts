@@ -208,6 +208,13 @@ declare module 'astro:content' {
   collection: "video";
   data: InferEntrySchema<"video">
 } & { render(): Render[".mdx"] };
+"202402-birthday-0229.mdx": {
+	id: "202402-birthday-0229.mdx";
+  slug: "202402-birthday-0229";
+  body: string;
+  collection: "video";
+  data: InferEntrySchema<"video">
+} & { render(): Render[".mdx"] };
 };
 
 	};

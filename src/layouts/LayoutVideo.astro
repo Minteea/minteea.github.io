@@ -2,6 +2,7 @@
 import VideoPlayer from "@components/VideoPlayer";
 import LayoutContent from "./LayoutContent.astro";
 import FormattedDate from "@components/FormattedDate";
+import { getPageTitle } from "@utils/getPageTitle";
 
 interface Props {
   data: Record<string, any>;
@@ -9,15 +10,42 @@ interface Props {
 
 const { data } = Astro.props;
 
-const { title, description, date, cover } = data;
+const { title, description, date, cover, links } = data;
 ---
 
-<LayoutContent pageTitle={title} pageDescription={description}>
+<LayoutContent pageTitle={getPageTitle(title)} pageDescription={description}>
   <header class="bg h-[120px] mb-4 flex justify-between">
     <div class="px-4 py-4">
       <h1>{title}</h1>
-      <div class="text-sm">
+      <div class="text-sm leading-6 flex">
         <FormattedDate client:load date={date} format="YYYY-MM-DD HH:mm:ss" />
+        <div class="video-links text-sm leading-6">
+          {
+            links && (
+              <span class="video-links-divider px-2 text-gray-500">|</span>
+            )
+          }
+          {
+            links.av && (
+              <a href={`https://bilibili.com/av${links.av}`}>av{links.av}</a>
+            )
+          }
+          {
+            links.bv && (
+              <a href={`https://bilibili.com/${links.bv}`}>{links.bv}</a>
+            )
+          }
+          {
+            links.ac && (
+              <a href={`https://acfun.cn/v/ac${links.ac}`}>ac{links.ac}</a>
+            )
+          }
+          {
+            links.mv && (
+              <a href={`https://mfuns.net/mv${links.mv}`}>mv{links.mv}</a>
+            )
+          }
+        </div>
       </div>
     </div>
     <img
@@ -35,3 +63,11 @@ const { title, description, date, cover } = data;
     <slot />
   </main>
 </LayoutContent>
+
+<style is:global lang="scss">
+  .video-links > a:nth-of-type(n + 2) {
+    &::before {
+      content: " · ";
+    }
+  }
+</style>
