@@ -1,3 +1,5 @@
+@import "./font.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,6 +8,7 @@
   --foreground: #000000;
   --background: #ffffff;
   --page-background: #f0f0f0;
+  --font-family: "Gotham Pro", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,6 +22,7 @@
 body {
   color: var(--foreground);
   background: var(--page-background);
+  font-family: var(--font-family);
 }
 
 .bg {

@@ -24,10 +24,42 @@ const title = "睡觉打卡生成器";
   </main>
 </LayoutContent>
 
+<style is:inline lang="scss">
+  @import url("https://static.zeoseven.com/cn/288/main/result.css");
+  @font-face {
+    font-family: "DIN Pro";
+    src: url("/font/DIN-Pro/DINPro-Light.ttf");
+    font-weight: 300;
+  }
+  @font-face {
+    font-family: "DIN Pro";
+    src: url("/font/DIN-Pro/DINPro.ttf");
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: "DIN Pro";
+    src: url("/font/DIN-Pro/DINPro-Medium.ttf");
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: "DIN Pro";
+    src: url("/font/DIN-Pro/DINPro-Bold.ttf");
+    font-weight: 700;
+  }
+  @font-face {
+    font-family: "DIN Pro";
+    src: url("/font/DIN-Pro/DINPro-Black.ttf");
+    font-weight: 900;
+  }
+</style>
+
 <style lang="scss">
-  * {
-    font-family: "DIN Pro", "Source Han Sans SC";
-    border: none;
+  main {
+    font-family: "DIN Pro", "Source Han Sans SC", "Source Han Sans SC VF",
+      sans-serif;
+    * {
+      border: none;
+    }
   }
   #card {
     width: 420px;
