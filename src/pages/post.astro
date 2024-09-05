@@ -2,11 +2,15 @@
 import { postEntries } from "@utils/contentEntries";
 import LayoutContent from "@layouts/LayoutContent.astro";
 import ListCardBlog from "@components/content/ListCardBlog.astro";
-const PAGE_TITLE = "博客 - A cup of Minteea 🍵";
+import { getPageTitle } from "@utils/getPageTitle";
+const title = "博客 - A cup of Minteea 🍵";
 const PAGE_DESCRIPTION = "Minteea的个人博客";
 ---
 
-<LayoutContent pageTitle={PAGE_TITLE} pageDescription={PAGE_DESCRIPTION}>
+<LayoutContent
+  pageTitle={getPageTitle(title)}
+  pageDescription={PAGE_DESCRIPTION}
+>
   <h1>文章列表</h1>
   <ul>
     {

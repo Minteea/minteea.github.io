@@ -1,0 +1,21 @@
+---
+import FormattedDate from "@components/FormattedDate";
+import type { PostData } from "@utils/types";
+
+interface Props {
+  link: string;
+  title: string;
+  description?: string;
+}
+
+const { link, title, description } = Astro.props;
+---
+
+<a href={link}>
+  <div class="w-full bg p-2">
+    <div class="text-base font-bold line-clamp-1">{title}</div>
+    <div class="text-sm">
+      {description}
+    </div>
+  </div>
+</a>

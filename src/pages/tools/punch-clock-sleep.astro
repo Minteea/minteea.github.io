@@ -1,0 +1,139 @@
+---
+import LayoutContent from "@layouts/LayoutContent.astro";
+import { getPageTitle } from "@utils/getPageTitle";
+
+const title = "睡觉打卡生成器";
+---
+
+<LayoutContent pageTitle={`${getPageTitle(title)}`}>
+  <h1>睡觉打卡生成器</h1>
+  <main>
+    <div id="card">
+      <div id="info">
+        <div id="title">起床打卡 | Good Morning</div>
+        <div id="now">我在</div>
+        <div id="tag">
+          <span id="time" contenteditable="true">00:00</span>
+          <span id="action">起床</span>
+        </div>
+      </div>
+    </div>
+    <button id="b-switch" onclick="switchStatus()">起床时间</button>
+    <button id="b-save" onclick="copyImage()">复制</button>
+    <button id="b-save" onclick="saveImage()">保存</button>
+  </main>
+</LayoutContent>
+
+<style lang="scss">
+  * {
+    font-family: "DIN Pro", "Source Han Sans SC";
+    border: none;
+  }
+  #card {
+    width: 420px;
+    height: 200px;
+    // border-radius: 16px;
+    user-select: none;
+    background-color: #fcf7cf;
+    color: #2da0b4;
+  }
+  #card.is-sleep {
+    color: #b3dbfc;
+    background-color: #0a3b68;
+  }
+  #info {
+    width: 100%;
+    height: 120px;
+    padding-top: 20px;
+    padding-left: 40px;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: 900;
+  }
+  #title {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  #time {
+    font-size: 80px;
+    font-weight: 900;
+  }
+  #tag {
+    line-height: 60px;
+  }
+  #action {
+    padding-left: 10px;
+  }
+</style>
+
+<script
+  is:inline
+  src="https://cdn.jsdelivr.net/npm/dom-to-image-more@3.3.1/dist/dom-to-image-more.min.js"
+></script>
+<script
+  is:inline
+  src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"
+></script>
+
+<script is:inline>
+  let isSleep = false;
+
+  const $time = document.getElementById("time");
+  const $now = document.getElementById("now");
+  const $action = document.getElementById("action");
+  const $card = document.getElementById("card");
+  const $title = document.getElementById("title");
+
+  const $switch = document.getElementById("b-switch");
+  const $save = document.getElementById("b-save");
+
+  function isNight() {
+    const hours = new Date().getHours();
+    return hours < 4 || hours > 20;
+  }
+
+  function currentTime() {
+    const date = new Date();
+    return `${date.getHours().toString().padStart(2, "0")}:${date
+      .getMinutes()
+      .toString()
+      .padStart(2, "0")}`;
+  }
+
+  function switchStatus() {
+    isSleep = !isSleep;
+    $switch.innerText = isSleep ? "睡觉时间" : "起床时间";
+    $title.innerText = isSleep
+      ? "睡觉打卡 | Good Night"
+      : "起床打卡 | Good Morning";
+    $now.innerText = isSleep ? "我将在" : "我在";
+    $action.innerText = isSleep ? "睡觉" : "起床";
+    $card.classList.toggle("is-sleep", isSleep);
+  }
+  function copyImage() {
+    domtoimage.toBlob(document.getElementById("card")).then(function (blob) {
+      let data = [new ClipboardItem({ [blob.type]: blob })];
+      navigator.clipboard.write(data).then(
+        () => {
+          window.alert("已复制到剪贴板");
+        },
+        (err) => {
+          window.alert("保存失败");
+          console.error(err);
+        }
+      );
+    });
+  }
+  function saveImage() {
+    domtoimage.toBlob(document.getElementById("card")).then(function (blob) {
+      window.saveAs(blob, "打卡.png");
+    });
+  }
+
+  if (isNight()) {
+    switchStatus();
+    console.log(isNight());
+  }
+
+  $time.innerText = currentTime();
+</script>

@@ -2,11 +2,15 @@
 import ListCardVideo from "@components/content/ListCardVideo.astro";
 import LayoutContent from "@layouts/LayoutContent.astro";
 import { videoEntries } from "@utils/contentEntries";
-const PAGE_TITLE = "创作 - A cup of Minteea 🍵";
+import { getPageTitle } from "@utils/getPageTitle";
+const title = "创作";
 const PAGE_DESCRIPTION = "Minteea的个人小站";
 ---
 
-<LayoutContent pageTitle={PAGE_TITLE} pageDescription={PAGE_DESCRIPTION}>
+<LayoutContent
+  pageTitle={getPageTitle(title)}
+  pageDescription={PAGE_DESCRIPTION}
+>
   <h1>创作</h1>
   <ul class="flex flex-col gap-2">
     {

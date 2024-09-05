@@ -1,9 +1,14 @@
 ---
 import LayoutContent from "@layouts/LayoutContent.astro";
-const PAGE_TITLE = "档案 - A cup of Minteea 🍵";
+import { getPageTitle } from "@utils/getPageTitle";
+
+const title = "档案";
 const PAGE_DESCRIPTION = "Minteea的个人小站";
 ---
 
-<LayoutContent pageTitle={PAGE_TITLE} pageDescription={PAGE_DESCRIPTION}>
+<LayoutContent
+  pageTitle={getPageTitle(title)}
+  pageDescription={PAGE_DESCRIPTION}
+>
   <h1>档案</h1>
 </LayoutContent>

@@ -1,0 +1,31 @@
+---
+import ListCardTools from "@components/content/ListCardTools.astro";
+import LayoutContent from "@layouts/LayoutContent.astro";
+import { getPageTitle } from "@utils/getPageTitle";
+
+const title = "小工具";
+const toolList: { name: string; title: string; description?: string }[] = [
+  {
+    name: "punch-clock-sleep",
+    title: "睡觉打卡生成器",
+    description: "生成睡觉/起床打卡图片",
+  },
+];
+---
+
+<LayoutContent pageTitle={`${getPageTitle(title)}`}>
+  <h1>小工具</h1>
+  <ul>
+    {
+      toolList.map(({ name, title, description }) => (
+        <li>
+          <ListCardTools
+            link={`/tools/${name}`}
+            title={title}
+            description={description}
+          />
+        </li>
+      ))
+    }
+  </ul>
+</LayoutContent>
