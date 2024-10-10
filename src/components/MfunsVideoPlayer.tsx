@@ -17,9 +17,11 @@ const ONEDRIVE_LINK =
 export default function VideoPlayer({
   title,
   videoParts,
+  themeColor,
 }: {
   title: string;
   videoParts: string[];
+  themeColor?: string;
 }) {
   const container = useRef<HTMLDivElement>(null);
   let player = null;
@@ -63,6 +65,12 @@ export default function VideoPlayer({
       modal: {
         panels: ["about", "hotkeyInfo"],
       },
+      theme: themeColor
+        ? {
+            primaryColor: themeColor,
+            secondaryColor: themeColor,
+          }
+        : undefined,
     });
     window.player = player;
     return () => {

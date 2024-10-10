@@ -4,12 +4,18 @@ import MfunsVideoPlayer from "./MfunsVideoPlayer";
 interface Props {
   title: string;
   videoParts: string[];
+  themeColor?: string;
 }
 
-const { title, videoParts } = Astro.props;
+const { title, videoParts, themeColor } = Astro.props;
 ---
 
-<MfunsVideoPlayer client:only videoParts={videoParts} title={title} />
+<MfunsVideoPlayer
+  client:only
+  videoParts={videoParts}
+  title={title}
+  themeColor={themeColor}
+/>
 <style is:global>
   .mfuns-player .mfuns-player-videotime {
     width: 140px;

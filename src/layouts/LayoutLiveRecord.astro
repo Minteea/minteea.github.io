@@ -11,7 +11,8 @@ interface Props {
 
 const { data } = Astro.props;
 
-const { title, description, date, cover, coverId, videoParts } = data;
+const { title, description, date, cover, coverId, videoParts, themeColor } =
+  data;
 ---
 
 <LayoutContent pageTitle={getPageTitle(title)} pageDescription={description}>
@@ -33,7 +34,11 @@ const { title, description, date, cover, coverId, videoParts } = data;
   <div class="bg mb-2">
     {
       videoParts ? (
-        <VideoPlayer title={title} videoParts={videoParts} />
+        <VideoPlayer
+          title={title}
+          videoParts={videoParts}
+          themeColor={themeColor}
+        />
       ) : (
         <div class="h-36 w-full flex justify-center items-center">暂无回放</div>
       )
