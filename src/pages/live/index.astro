@@ -1,0 +1,27 @@
+---
+import { liveEntries, postEntries } from "@utils/contentEntries";
+import LayoutContent from "@layouts/LayoutContent.astro";
+import ListCardBlog from "@components/content/ListCardBlog.astro";
+import { getPageTitle } from "@utils/getPageTitle";
+import ListCardVideo from "@components/content/ListCardVideo.astro";
+const title = "直播记录";
+const PAGE_DESCRIPTION = "Minteea的个人小站";
+---
+
+<LayoutContent
+  pageTitle={getPageTitle(title)}
+  pageDescription={PAGE_DESCRIPTION}
+>
+  <h1>直播记录</h1>
+  <ul class="flex flex-col gap-2">
+    {
+      liveEntries
+        .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+        .map(({ slug, data }) => (
+          <li>
+            <ListCardVideo link={`/live/${slug}`} data={data} />
+          </li>
+        ))
+    }
+  </ul>
+</LayoutContent>

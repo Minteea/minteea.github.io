@@ -1,0 +1,14 @@
+---
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const postEntries = await getCollection("live");
+  return postEntries.map((entry) => ({
+    params: { id: entry.slug.split("/").at(-1) },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+return Astro.redirect(`/live/${entry.slug}`);
+---

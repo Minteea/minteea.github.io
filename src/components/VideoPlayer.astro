@@ -1,0 +1,20 @@
+---
+import MfunsVideoPlayer from "./MfunsVideoPlayer";
+
+interface Props {
+  title: string;
+  videoParts: string[];
+}
+
+const { title, videoParts } = Astro.props;
+---
+
+<MfunsVideoPlayer client:only videoParts={videoParts} title={title} />
+<style is:global>
+  .mfuns-player .mfuns-player-videotime {
+    width: 140px;
+  }
+  .mfuns-player .mfuns-player-danmakubar {
+    display: none;
+  }
+</style>

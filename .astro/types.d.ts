@@ -135,7 +135,79 @@ declare module 'astro:content' {
 	>;
 
 	type ContentEntryMap = {
-		"post": {
+		"live": {
+"2023C/carto/20230828_21C.md": {
+	id: "2023C/carto/20230828_21C.md";
+  slug: "2023c/carto/20230828_21c";
+  body: string;
+  collection: "live";
+  data: any
+} & { render(): Render[".md"] };
+"2023C/carto/20230830_21C.md": {
+	id: "2023C/carto/20230830_21C.md";
+  slug: "2023c/carto/20230830_21c";
+  body: string;
+  collection: "live";
+  data: any
+} & { render(): Render[".md"] };
+"2023C/carto/20230901_21C.md": {
+	id: "2023C/carto/20230901_21C.md";
+  slug: "2023c/carto/20230901_21c";
+  body: string;
+  collection: "live";
+  data: any
+} & { render(): Render[".md"] };
+"2023C/fall-guys/20230821_21C.md": {
+	id: "2023C/fall-guys/20230821_21C.md";
+  slug: "2023c/fall-guys/20230821_21c";
+  body: string;
+  collection: "live";
+  data: any
+} & { render(): Render[".md"] };
+"2024A/crossing-guard-joe/20240205_20C.md": {
+	id: "2024A/crossing-guard-joe/20240205_20C.md";
+  slug: "2024a/crossing-guard-joe/20240205_20c";
+  body: string;
+  collection: "live";
+  data: any
+} & { render(): Render[".md"] };
+"2024A/crossing-guard-joe/20240206_21C.md": {
+	id: "2024A/crossing-guard-joe/20240206_21C.md";
+  slug: "2024a/crossing-guard-joe/20240206_21c";
+  body: string;
+  collection: "live";
+  data: any
+} & { render(): Render[".md"] };
+"2024A/little-shark/20240216_21C.md": {
+	id: "2024A/little-shark/20240216_21C.md";
+  slug: "2024a/little-shark/20240216_21c";
+  body: string;
+  collection: "live";
+  data: any
+} & { render(): Render[".md"] };
+"2024C/fishing/20240831_18C.md": {
+	id: "2024C/fishing/20240831_18C.md";
+  slug: "2024c/fishing/20240831_18c";
+  body: string;
+  collection: "live";
+  data: any
+} & { render(): Render[".md"] };
+"2024C/minecraft/20240818_23C.md": {
+	id: "2024C/minecraft/20240818_23C.md";
+  slug: "2024c/minecraft/20240818_23c";
+  body: string;
+  collection: "live";
+  data: any
+} & { render(): Render[".md"] };
+"2024C/minecraft/20240824_15B.md": {
+	id: "2024C/minecraft/20240824_15B.md";
+  slug: "2024c/minecraft/20240824_15b";
+  body: string;
+  collection: "live";
+  data: any
+} & { render(): Render[".md"] };
+};
+"post": {
 "hello-world.mdx": {
 	id: "hello-world.mdx";
   slug: "hello-world";

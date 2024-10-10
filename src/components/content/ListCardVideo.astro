@@ -1,5 +1,6 @@
 ---
 import FormattedDate from "@components/FormattedDate";
+import { getCover } from "@data/live-cover-id";
 import type { VideoData } from "@utils/types";
 
 interface Props {
@@ -13,7 +14,7 @@ const { link, data } = Astro.props;
 <a href={link}>
   <div class="w-full flex bg h-[90px]">
     <img
-      src={data.cover}
+      src={data.cover || getCover(data.coverId)}
       class="w-[160px] object-cover"
       referrerpolicy="no-referrer"
     />

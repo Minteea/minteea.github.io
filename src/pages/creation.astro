@@ -14,11 +14,14 @@ const PAGE_DESCRIPTION = "Minteea的个人小站";
   <h1>创作</h1>
   <ul class="flex flex-col gap-2">
     {
-      videoEntries.map(({ slug, data }) => (
-        <li>
-          <ListCardVideo link={`/video/${slug}`} data={data} />
-        </li>
-      ))
+      videoEntries
+        .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+        .map(({ slug, data }) => (
+          <li>
+            <ListCardVideo link={`/video/${slug}`} data={data} />
+          </li>
+        ))
     }
   </ul>
+  <div class="my-3"><a href="/live">{"直播记录 >"}</a></div>
 </LayoutContent>

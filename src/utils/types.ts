@@ -7,6 +7,7 @@ export interface VideoData {
   description?: string;
   links: Record<string, any>;
   cover?: string;
+  coverId?: string;
 }
 
 export interface PostData {
@@ -17,4 +18,16 @@ export interface PostData {
   updated: Date;
   description?: string;
   cover?: string;
+}
+
+export interface LiveData {
+  id?: string;
+  title: string;
+  type?: string;
+  date: Date;
+  updated: Date;
+  description?: string;
+  cover?: string;
+  coverId?: string;
+  videoParts?: string[];
 }

@@ -5,3 +5,5 @@ export const postEntries = await getCollection("post", ({ data }) => {
 });
 
 export const videoEntries = await getCollection("video");
+
+export const liveEntries = await getCollection("live");

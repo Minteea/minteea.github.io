@@ -1,0 +1,53 @@
+---
+import LayoutContent from "./LayoutContent.astro";
+import FormattedDate from "@components/FormattedDate";
+import { getPageTitle } from "@utils/getPageTitle";
+import VideoPlayer from "@components/VideoPlayer.astro";
+import { getCover } from "@data/live-cover-id";
+
+interface Props {
+  data: Record<string, any>;
+}
+
+const { data } = Astro.props;
+
+const { title, description, date, cover, coverId, videoParts } = data;
+---
+
+<LayoutContent pageTitle={getPageTitle(title)} pageDescription={description}>
+  <header class="bg h-[120px] mb-4 flex justify-between">
+    <div class="px-4 py-4">
+      <h1>{title}</h1>
+      <div class="text-sm leading-6 flex">
+        <FormattedDate client:load date={date} format="YYYY-MM-DD HH:mm:ss" />
+      </div>
+    </div>
+    <img
+      src={cover || getCover(coverId) || ""}
+      width={"auto"}
+      referrerpolicy="no-referrer"
+      alt={title}
+      class="bg-gray-400 aspect-video"
+    />
+  </header>
+  <div class="bg mb-2">
+    {
+      videoParts ? (
+        <VideoPlayer title={title} videoParts={videoParts} />
+      ) : (
+        <div class="h-36 w-full flex justify-center items-center">暂无回放</div>
+      )
+    }
+  </div>
+  <main class="content bg min-h-[200px] px-4 py-4">
+    <slot />
+  </main>
+</LayoutContent>
+
+<style is:global lang="scss">
+  .video-links > a:nth-of-type(n + 2) {
+    &::before {
+      content: " · ";
+    }
+  }
+</style>

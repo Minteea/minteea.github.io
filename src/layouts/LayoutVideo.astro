@@ -1,5 +1,5 @@
 ---
-import VideoPlayer from "@components/VideoPlayer";
+import VideoSourcePlayer from "@components/VideoSourcePlayer";
 import LayoutContent from "./LayoutContent.astro";
 import FormattedDate from "@components/FormattedDate";
 import { getPageTitle } from "@utils/getPageTitle";
@@ -57,7 +57,7 @@ const { title, description, date, cover, links } = data;
     />
   </header>
   <div class="bg mb-2">
-    <VideoPlayer data={data as any} client:load />
+    <VideoSourcePlayer data={data as any} client:load />
   </div>
   <main class="content bg min-h-[200px] px-4 py-4">
     <slot />
