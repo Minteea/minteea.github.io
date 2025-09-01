@@ -1,9 +1,10 @@
-import { useEffect, useRef } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import {
   Player,
   version as playerVersion,
 } from "../scripts/mfuns-player-meon/standard-player.es.js";
 import type * as MfunsPlayer from "mfuns-player-meon/mfuns-player/video-page-player.js";
+import { resolveUrl } from "@utils/resolveUrl.js";
 
 declare global {
   interface Window {
@@ -24,14 +25,26 @@ export default function VideoPlayer({
   themeColor?: string;
 }) {
   const container = useRef<HTMLDivElement>(null);
-  let player = null;
-  window.player = null;
+  const [urls, setUrls] = useState<string[]>(null);
   useEffect(() => {
-    player = new (Player as any as typeof MfunsPlayer.Player)({
+    const abortController = new AbortController();
+    (async () =>
+      setUrls(
+        await Promise.all(
+          videoParts.map((url) => resolveUrl(url, abortController.signal))
+        )
+      ))();
+    return () => {
+      abortController.abort();
+    };
+  }, [videoParts]);
+  useEffect(() => {
+    if (!urls) return;
+    let player = new (Player as any as typeof MfunsPlayer.Player)({
       container: container.current,
       video: {
         title: title,
-        list: videoParts.map((u) => ({
+        list: urls.map((u) => ({
           url: u,
         })),
       },
@@ -74,11 +87,11 @@ export default function VideoPlayer({
     });
     window.player = player;
     return () => {
-      player.destory();
+      player.destroy();
       player = null;
       window.player = null;
     };
-  }, []);
+  }, [urls]);
   return (
     <div class="cursor-default">
       <div
@@ -97,7 +110,7 @@ export default function VideoPlayer({
           <div class="flex">
             <span>下载视频：</span>
             <ul class="flex gap-2">
-              {videoParts.map((url, i) => (
+              {urls?.map((url, i) => (
                 <a href={url}>{"P" + (i + 1).toString().padStart(2, "0")}</a>
               ))}
             </ul>

@@ -1,0 +1,14 @@
+---
+import CalendarWeek from "@components/calendar/week/CalendarWeek";
+import LayoutContent from "@layouts/LayoutContent.astro";
+import { getPageTitle } from "@utils/getPageTitle";
+
+const title = "日历";
+---
+
+<LayoutContent pageTitle={`${getPageTitle(title)}`}>
+  <!--CalendarWeek weekData={[{date: new Date(), data: [{type: "live", time: "20241230_190000", title:"直播"}]}]}/-->
+</LayoutContent>
+<style is:global>
+  
+</style>

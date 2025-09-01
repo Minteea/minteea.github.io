@@ -22,7 +22,6 @@
     "tailwindcss": "^3.0.24"
   },
   "devDependencies": {
-    "@types/node": "^20.14.11",
     "mfuns-player-meon": "^3.0.0-alpha.15",
     "typescript": "^5.2.2"
   }
