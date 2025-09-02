@@ -8,15 +8,21 @@ interface Props {
 
 const { transparent, class: className = "" } = Astro.props;
 
-const navList: { name: string; label: string; matches?: string[] }[] = [
+const currentPart = Astro.url.pathname.split("/")[1];
+
+const navList: {
+  name: string;
+  label: string;
+  matches?: string[];
+  show?: boolean;
+}[] = [
+  { name: "live", label: "直播记录", show: currentPart == "live" },
   { name: "creation", label: "创作" },
   { name: "profile", label: "档案" },
   { name: "blog", label: "博客", matches: ["article", "post"] },
   { name: "tools", label: "小工具" },
   { name: "about", label: "关于" },
 ];
-
-const currentPart = Astro.url.pathname.split("/")[1];
 ---
 
 <nav class={`navbar ${transparent ? "" : "bg"}`}>
@@ -29,17 +35,19 @@ const currentPart = Astro.url.pathname.split("/")[1];
     <div class="navbar-right">
       <ul class="navbar-list">
         {
-          navList.map(({ name, label, matches }) => (
-            <li
-              class={
-                currentPart == name || matches?.includes(currentPart)
-                  ? "is-active"
-                  : ""
-              }
-            >
-              <a href={`/${name}`}>{label}</a>
-            </li>
-          ))
+          navList
+            .filter((n) => n.show != false)
+            .map(({ name, label, matches }) => (
+              <li
+                class={
+                  currentPart == name || matches?.includes(currentPart)
+                    ? "is-active"
+                    : ""
+                }
+              >
+                <a href={`/${name}`}>{label}</a>
+              </li>
+            ))
         }
       </ul>
     </div>

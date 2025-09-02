@@ -220,6 +220,13 @@ declare module 'astro:content' {
   collection: "live";
   data: any
 } & { render(): Render[".md"] };
+"2025C/word-game/20250901_22C.md": {
+	id: "2025C/word-game/20250901_22C.md";
+  slug: "2025c/word-game/20250901_22c";
+  body: string;
+  collection: "live";
+  data: any
+} & { render(): Render[".md"] };
 };
 "post": {
 "hello-world.mdx": {
