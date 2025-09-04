@@ -14,8 +14,9 @@ export const liveCoverIdMap: Record<string, string> = {
   "2024-summer": "/live-cover/2024C/Minteea-2024Summer.png",
   "2024-summer-night": "/live-cover/2024C/Minteea-2024Summer2.png",
   "minecraft-2024C": "/live-cover/2024C/MinteeaMC2024.cover.png",
-  "word-game-2025C-0": "/live-cover/2025C/Minteea-cover-wordgame-1.png",
-  "word-game-2025C": "/live-cover/2025C/Minteea-cover-wordgame.png",
+  // 2025C
+  "word-game-2025C-0": "https://s2.loli.net/2025/09/02/KhUir924QB76PZs.png",
+  "word-game-2025C": "https://s2.loli.net/2025/09/02/pvgyDfzYLBkwiXO.png",
 };
 
 export function getCover(id: string) {

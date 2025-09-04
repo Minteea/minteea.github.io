@@ -227,6 +227,13 @@ declare module 'astro:content' {
   collection: "live";
   data: any
 } & { render(): Render[".md"] };
+"2025C/word-game/20250903_22C.md": {
+	id: "2025C/word-game/20250903_22C.md";
+  slug: "2025c/word-game/20250903_22c";
+  body: string;
+  collection: "live";
+  data: any
+} & { render(): Render[".md"] };
 };
 "post": {
 "hello-world.mdx": {
