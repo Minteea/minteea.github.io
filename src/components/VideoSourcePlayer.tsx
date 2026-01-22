@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { createSignal, For } from "solid-js";
 import type { VideoData } from "@utils/types";
 
 function getVideoSrc(source: string, data: VideoData, part: number = 1) {
@@ -28,37 +28,38 @@ function getAvailableSources(data: VideoData) {
 
 export default function VideoSourcePlayer({ data }: { data: VideoData }) {
   const availableSources = getAvailableSources(data);
-  const [source, setSource] = useState(availableSources[0] || "bilibili");
-  const src = getVideoSrc(source, data);
+  const [source, setSource] = createSignal(availableSources[0] || "bilibili");
+
   return (
     <div>
       <iframe
         id="video-player-source"
-        src={src}
+        src={getVideoSrc(source(), data)}
         scrolling="no"
-        frameBorder="no"
-        allowFullScreen={true}
+        frameborder="no"
+        allowfullscreen={true}
         style={{
           width: "100%",
           height: "100%",
-          aspectRatio: "16/9",
+          "aspect-ratio": "16/9",
         }}
       ></iframe>
       <hr />
       <div class="flex px-2">
         <div>播放源：</div>
         <ul class="flex gap-2">
-          {availableSources.map((s) => (
-            <li
-              key={s}
-              onClick={() => {
-                setSource(s);
-              }}
-              class={`${source == s ? "font-bold" : ""} cursor-pointer`}
-            >
-              {s}
-            </li>
-          ))}
+          <For each={availableSources}>
+            {(s) => (
+              <li
+                onClick={() => {
+                  setSource(s);
+                }}
+                class={`${source() === s ? "font-bold" : ""} cursor-pointer`}
+              >
+                {s}
+              </li>
+            )}
+          </For>
         </ul>
       </div>
     </div>

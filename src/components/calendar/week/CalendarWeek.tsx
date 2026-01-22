@@ -1,3 +1,4 @@
+import { For } from "solid-js";
 import CalendarWeekItem from "./CalendarWeekItem";
 
 interface CalendarWeekProps {
@@ -14,9 +15,9 @@ interface CalendarWeekProps {
 export default function CalendarWeek({ weekData }: CalendarWeekProps) {
   return (
     <div>
-      {weekData.map((d) => (
-        <CalendarWeekItem date={d.date} data={d.data} />
-      ))}
+      <For each={weekData}>
+        {(d) => <CalendarWeekItem date={d.date} data={d.data} />}
+      </For>
     </div>
   );
 }

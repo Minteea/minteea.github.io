@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "preact/hooks";
+import { onMount, onCleanup, createSignal, createEffect, For } from "solid-js";
 import {
   Player,
   version as playerVersion,
@@ -24,27 +24,34 @@ export default function VideoPlayer({
   videoParts: string[];
   themeColor?: string;
 }) {
-  const container = useRef<HTMLDivElement>(null);
-  const [urls, setUrls] = useState<string[]>(null);
-  useEffect(() => {
+  let container: HTMLDivElement | undefined;
+  const [urls, setUrls] = createSignal<string[] | null>(null);
+
+  // Load URLs
+  onMount(() => {
     const abortController = new AbortController();
-    (async () =>
-      setUrls(
-        await Promise.all(
-          videoParts.map((url) => resolveUrl(url, abortController.signal))
-        )
-      ))();
-    return () => {
+    (async () => {
+      const resolvedUrls = await Promise.all(
+        videoParts.map((url) => resolveUrl(url, abortController.signal)),
+      );
+      setUrls(resolvedUrls);
+    })();
+
+    onCleanup(() => {
       abortController.abort();
-    };
-  }, [videoParts]);
-  useEffect(() => {
-    if (!urls) return;
+    });
+  });
+
+  // Initialize player
+  createEffect(() => {
+    const urlList = urls();
+    if (!urlList) return;
+
     let player = new (Player as any as typeof MfunsPlayer.Player)({
-      container: container.current,
+      container: container,
       video: {
         title: title,
-        list: urls.map((u) => ({
+        list: urlList.map((u) => ({
           url: u,
         })),
       },
@@ -86,12 +93,14 @@ export default function VideoPlayer({
         : undefined,
     });
     window.player = player;
-    return () => {
+
+    onCleanup(() => {
       player.destroy();
       player = null;
       window.player = null;
-    };
-  }, [urls]);
+    });
+  });
+
   return (
     <div class="cursor-default">
       <div
@@ -100,7 +109,7 @@ export default function VideoPlayer({
         style={{
           width: "100%",
           height: "100%",
-          aspectRatio: "16/9",
+          "aspect-ratio": "16/9",
         }}
       ></div>
       <hr />
@@ -110,9 +119,13 @@ export default function VideoPlayer({
           <div class="flex">
             <span>下载视频：</span>
             <ul class="flex gap-2">
-              {urls?.map((url, i) => (
-                <a href={url}>{"P" + (i + 1).toString().padStart(2, "0")}</a>
-              ))}
+              <For each={urls()}>
+                {(url, i) => (
+                  <a href={url}>
+                    {"P" + (i() + 1).toString().padStart(2, "0")}
+                  </a>
+                )}
+              </For>
             </ul>
           </div>
         </div>
