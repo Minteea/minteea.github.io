@@ -17,6 +17,14 @@ export const liveCoverIdMap: Record<string, string> = {
   // 2025C
   "word-game-2025C-0": "https://s2.loli.net/2025/09/02/KhUir924QB76PZs.png",
   "word-game-2025C": "https://s2.loli.net/2025/09/02/pvgyDfzYLBkwiXO.png",
+  // 2025D
+  "2025-winter-night":
+    "https://i0.hdslb.com/bfs/live/new_room_cover/e36d5b3aef0d844ae6f7dee1e4b70520e8427ddd.jpg",
+  // 2026B
+  "2026-spring-0":
+    "https://files.seeusercontent.com/2026/04/27/6waQ/Minteea-2026Spring-A0412.png",
+  "melatonin-2025C":
+    "https://i0.hdslb.com/bfs/live/new_room_cover/952d1bf8a85ddd4979757187062dde039e846512.jpg",
 };
 
 export function getCover(id: string) {

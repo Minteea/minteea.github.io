@@ -1,12 +1,14 @@
 ---
 import MinteeaLogo from "./MinteeaLogo.astro";
+import clsx from "clsx";
 
 interface Props {
   transparent?: boolean;
+  absolute?: boolean;
   class?: string;
 }
 
-const { transparent, class: className = "" } = Astro.props;
+const { transparent, absolute, class: className = "" } = Astro.props;
 
 const currentPart = Astro.url.pathname.split("/")[1];
 
@@ -25,8 +27,13 @@ const navList: {
 ];
 ---
 
-<nav class={`navbar ${transparent ? "" : "bg"}`}>
-  <div class={"navbar-content " + className}>
+<nav
+  class={clsx("navbar", {
+    bg: !transparent,
+    absolute: absolute,
+  })}
+>
+  <div class={clsx("navbar-content", className)}>
     <div class="navbar-left">
       <div class="navbar-logo">
         <a href="/"><MinteeaLogo /></a>
@@ -56,6 +63,7 @@ const navList: {
 <style is:global lang="scss">
   .navbar {
     --navbar-height: 40px;
+    width: 100%;
   }
   .navbar-content {
     height: var(--navbar-height);

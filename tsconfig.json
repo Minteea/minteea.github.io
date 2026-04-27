@@ -14,7 +14,7 @@
       "@utils/*": ["./src/utils/*"],
       "@data/*": ["./src/data/*"]
     },
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "jsxImportSource": "solid-js"
   }
 }

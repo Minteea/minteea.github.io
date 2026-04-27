@@ -3,14 +3,24 @@ import Footer from "@components/Footer.astro";
 import Navbar from "@components/Navbar.astro";
 import LayoutBase from "@layouts/LayoutBase.astro";
 import { getPageTitle } from "@utils/getPageTitle";
+import HomepageBanner from "../widgets/homepage/banner";
 
 const PAGE_DESCRIPTION = "Minteea的个人小站";
 ---
 
 <LayoutBase pageTitle={getPageTitle()} pageDescription={PAGE_DESCRIPTION}>
-  <Navbar transparent={true} class="mx-10" />
+  <Navbar transparent={true} absolute={true} class="mx-10" />
+  <HomepageBanner />
   <main class="mx-10">
-    <h1>Under Construction | 建设中</h1>
+    <section>
+      <h1>最新投稿</h1>
+    </section>
+    <section>
+      <h1>近期开发项目</h1>
+    </section>
+    <section>
+      <h1>个人链接</h1>
+    </section>
+    <Footer transparent={true} class="mx-10" />
   </main>
-  <Footer transparent={true} class="mx-10" />
 </LayoutBase>
