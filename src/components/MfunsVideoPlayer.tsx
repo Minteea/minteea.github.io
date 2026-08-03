@@ -57,52 +57,53 @@ export default function VideoPlayer({
     const urlList = urls();
     if (!urlList) return;
 
-    let player: MfunsPlayer.Player | null =
-      new (Player as any as typeof MfunsPlayer.Player)({
-        container: container,
-        video: {
-          title: title,
-          list: urlList.map((u) => ({
-            url: u,
-          })),
-        },
-        autoPart: true,
-        autoplay: true,
-        contextMenu: {
-          list: [
-            {
-              content: "下载视频...",
-              onClick: (player) => {
-                const url = player.getVideoInfo().url;
-                url
-                  ? window.open(url)
-                  : player.toast!("视频下载链接不存在！", 5000);
-              },
+    let player: MfunsPlayer.Player | null = new (
+      Player as any as typeof MfunsPlayer.Player
+    )({
+      container: container,
+      video: {
+        title: title,
+        list: urlList.map((u) => ({
+          url: u,
+        })),
+      },
+      autoPart: true,
+      autoplay: true,
+      contextMenu: {
+        list: [
+          {
+            content: "下载视频...",
+            onClick: (player) => {
+              const url = player.getVideoInfo().url;
+              url
+                ? window.open(url)
+                : player.toast!("视频下载链接不存在！", 5000);
             },
-            {
-              content: "快捷键说明",
-              onClick: (player) => {
-                player.plugins.hotkeyInfo?.toggle(true);
-              },
+          },
+          {
+            content: "快捷键说明",
+            onClick: (player) => {
+              player.plugins.hotkeyInfo?.toggle(true);
             },
-            {
-              content: `Mfuns Player v${playerVersion}`,
-              onClick: (player) => {
-                (player.plugins as any).about?.toggle(true);
-              },
+          },
+          {
+            content: `Mfuns Player v${playerVersion}`,
+            onClick: (player) => {
+              (player.plugins as any).about?.toggle(true);
             },
-          ],
-        },
-        modal: {
-          panels: ["about", "hotkeyInfo"],
-        },
-        theme: themeColor
-          ? {
-              primaryColor: themeColor,
-              secondaryColor: themeColor,
-            }
-          : undefined,
-      });
+          },
+        ],
+      },
+      modal: {
+        panels: ["about", "hotkeyInfo"],
+      },
+      theme: themeColor
+        ? {
+            primaryColor: themeColor,
+            secondaryColor: themeColor,
+          }
+        : undefined,
+    });
     setCurrentUrl(player.getVideoInfo().url ?? "");
     setCurrentPart(player.getVideoInfo().part ?? 0);
     player.on("videoChange", (info) => {

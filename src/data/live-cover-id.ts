@@ -26,9 +26,14 @@ export const liveCoverIdMap: Record<string, string> = {
   // 2026B
   "2026-spring-0":
     "https://files.seeusercontent.com/2026/04/27/6waQ/Minteea-2026Spring-A0412.png",
-  "bits-and-bops-2026B": "https://i0.hdslb.com/bfs/live/new_room_cover/fec36edb7f93310bbd8ddeb21f2f24422f4176fc.jpg",
-  "scritchy-scratchy-2026C": "https://i0.hdslb.com/bfs/live/new_room_cover/ecb29841cb45c3fc31ba2772db19c82cbea4c807.jpg",
-  "2026-summer-A": "https://i0.hdslb.com/bfs/live/new_room_cover/08505bbea6eb571caf94fd142d52ec8a850063b5.jpg"
+  "bits-and-bops-2026B":
+    "https://i0.hdslb.com/bfs/live/new_room_cover/fec36edb7f93310bbd8ddeb21f2f24422f4176fc.jpg",
+  "scritchy-scratchy-2026C":
+    "https://i0.hdslb.com/bfs/live/new_room_cover/ecb29841cb45c3fc31ba2772db19c82cbea4c807.jpg",
+  "2026-summer-A":
+    "https://i0.hdslb.com/bfs/live/new_room_cover/08505bbea6eb571caf94fd142d52ec8a850063b5.jpg",
+  "plants-vs-zombies-2026C":
+    "https://i0.hdslb.com/bfs/live/new_room_cover/6488b7dfce257243f196d91a161154b68ef648c7.jpg",
 };
 
 export function getCover(id: string) {
