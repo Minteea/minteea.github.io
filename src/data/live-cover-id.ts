@@ -32,8 +32,12 @@ export const liveCoverIdMap: Record<string, string> = {
     "https://i0.hdslb.com/bfs/live/new_room_cover/ecb29841cb45c3fc31ba2772db19c82cbea4c807.jpg",
   "2026-summer-A":
     "https://i0.hdslb.com/bfs/live/new_room_cover/08505bbea6eb571caf94fd142d52ec8a850063b5.jpg",
+  "2026-summer-B":
+    "https://i0.hdslb.com/bfs/live/new_room_cover/ca5d6afbe34b065474a4ef514ccae1792c1a5478.jpg",
   "plants-vs-zombies-2026C":
     "https://i0.hdslb.com/bfs/live/new_room_cover/6488b7dfce257243f196d91a161154b68ef648c7.jpg",
+  "rhythm-doctor-2026C":
+    "https://i0.hdslb.com/bfs/live/new_room_cover/1ef268f7cf0ed595636300b5a73e7c97a04b2195.jpg",
 };
 
 export function getCover(id: string) {
