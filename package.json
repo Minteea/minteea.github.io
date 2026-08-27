@@ -1,8 +1,9 @@
 {
-  "name": "minteea-site",
+  "name": "@minteea/site",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "astro dev",
