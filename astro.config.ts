@@ -11,4 +11,7 @@ export default defineConfig({
     remarkPlugins: [],
   },
   server: { port: 34321 },
+  legacy: {
+    collectionsBackwardsCompat: true,
+  },
 });
