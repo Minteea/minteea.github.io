@@ -25,6 +25,11 @@ const { pageTitle, pageDescription, class: className = "" } = Astro.props;
   </body>
 </html>
 
+<script>
+  import { webCounter } from "@utils/webcounter";
+  webCounter();
+</script>
+
 <style is:global>
   html,
   body {

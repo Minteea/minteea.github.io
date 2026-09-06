@@ -7,7 +7,8 @@ interface Props {
 const { transparent, class: className = "" } = Astro.props;
 ---
 
-<footer class=`footer text-center ${transparent ? "" : "bg"}`></footer>
+<footer class={`footer text-center ${transparent ? "" : "bg"} ${className}`}>
+</footer>
 
 <style>
   .footer {
@@ -15,6 +16,6 @@ const { transparent, class: className = "" } = Astro.props;
   }
 </style>
 <script>
-  document.querySelector("footer").innerText =
+  document.querySelector("footer")!.innerText =
     `Minteea ${new Date().getFullYear()}`;
 </script>

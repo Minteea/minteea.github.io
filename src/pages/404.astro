@@ -1,0 +1,20 @@
+---
+import Footer from "@components/Footer.astro";
+import Navbar from "@components/Navbar.astro";
+import LayoutBase from "@layouts/LayoutBase.astro";
+import { getPageTitle } from "@utils/getPageTitle";
+import HomepageBanner from "../widgets/homepage/banner";
+
+const PAGE_DESCRIPTION = "Minteea的个人小站";
+---
+
+<LayoutBase pageTitle={getPageTitle()} pageDescription={PAGE_DESCRIPTION}>
+  <Navbar transparent={true} absolute={true} class="mx-10" />
+  <main
+    class="bg-gray-400 h-screen flex flex-col items-center justify-center font-bold text-white"
+  >
+    <div class="text-[12rem]">[404]</div>
+    <div class="text-4xl">页面未找到</div>
+  </main>
+  <Footer transparent={true} class="absolute bottom-0 w-full" />
+</LayoutBase>
