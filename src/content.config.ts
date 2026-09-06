@@ -1,8 +1,9 @@
 import { defineCollection } from "astro:content";
 import { z } from "astro/zod"
+import { glob } from "astro/loaders";
 export const collections = {
   post: defineCollection({
-    type: "content",
+    loader: glob({ base: './src/content/post', pattern: '**/*.{md,mdx}' }),
     schema: z.object({
       title: z.string(),
       date: z.date(),
@@ -14,7 +15,7 @@ export const collections = {
     }),
   }),
   video: defineCollection({
-    type: "content",
+    loader: glob({ base: './src/content/video', pattern: '**/*.{md,mdx}' }),
     schema: z.object({
       title: z.string(),
       date: z.date(),
@@ -30,6 +31,18 @@ export const collections = {
           mv: z.number().nullish(),
         })
         .nullish(),
+    }),
+  }),
+  live: defineCollection({
+    loader: glob({ base: './src/content/live', pattern: '**/*.{md,mdx}' }),
+    schema: z.object({
+      title: z.string(),
+      date: z.date(),
+      id: z.string(),
+      coverId: z.string().nullish(),
+      series: z.string().nullish(),
+      themeColor: z.string().nullish(),
+      videoParts: z.array(z.string()).nullish(),
     }),
   }),
 };

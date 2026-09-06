@@ -1,17 +1,17 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import LayoutLiveRecord from "@layouts/LayoutLiveRecord.astro";
 
 export async function getStaticPaths() {
   const postEntries = await getCollection("live");
   return postEntries.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: { entry },
   }));
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 
 <LayoutLiveRecord data={entry.data}>

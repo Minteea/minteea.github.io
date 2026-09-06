@@ -17,9 +17,9 @@ const PAGE_DESCRIPTION = "Minteea的个人小站";
     {
       liveEntries
         .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-        .map(({ slug, data }) => (
+        .map(({ id, data }) => (
           <li>
-            <ListCardVideo link={`/live/${slug}`} data={data} />
+            <ListCardVideo link={`/live/${id}`} data={data} />
           </li>
         ))
     }

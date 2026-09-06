@@ -14,9 +14,9 @@ const PAGE_DESCRIPTION = "Minteea的个人博客";
   <h1>文章列表</h1>
   <ul>
     {
-      postEntries.map(({ slug, data }) => (
+      postEntries.map(({ id, data }) => (
         <li>
-          <ListCardBlog link={`/post/${slug}`} data={data} />
+          <ListCardBlog link={`/post/${id}`} data={data} />
         </li>
       ))
     }
