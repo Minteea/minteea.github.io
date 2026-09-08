@@ -3,6 +3,7 @@ import { postEntries } from "@utils/contentEntries";
 import LayoutContent from "@layouts/LayoutContent.astro";
 import ListCardBlog from "@components/content/ListCardBlog.astro";
 import { getPageTitle } from "@utils/getPageTitle";
+import "@styles/pages.scss";
 const title = "博客";
 const PAGE_DESCRIPTION = "Minteea的个人博客";
 ---
@@ -12,7 +13,7 @@ const PAGE_DESCRIPTION = "Minteea的个人博客";
   pageDescription={PAGE_DESCRIPTION}
 >
   <h1>博客</h1>
-  <ul class="flex flex-col gap-2">
+  <ul class="page-list">
     {
       postEntries.map(({ id, data }) => (
         <li>

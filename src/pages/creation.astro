@@ -3,6 +3,7 @@ import ListCardVideo from "@components/content/ListCardVideo.astro";
 import LayoutContent from "@layouts/LayoutContent.astro";
 import { videoEntries } from "@utils/contentEntries";
 import { getPageTitle } from "@utils/getPageTitle";
+import "@styles/pages.scss";
 const title = "创作";
 const PAGE_DESCRIPTION = "Minteea的个人小站";
 ---
@@ -12,7 +13,7 @@ const PAGE_DESCRIPTION = "Minteea的个人小站";
   pageDescription={PAGE_DESCRIPTION}
 >
   <h1>创作</h1>
-  <ul class="flex flex-col gap-2">
+  <ul class="page-list">
     {
       videoEntries
         .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())

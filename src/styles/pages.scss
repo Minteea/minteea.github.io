@@ -1,0 +1,45 @@
+.page-navigation {
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+}
+
+.page-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.homepage-content {
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+}
+
+.homepage-footer {
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+}
+
+.not-found-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #9ca3af;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.not-found-code {
+  font-size: 12rem;
+}
+
+.not-found-message {
+  font-size: 2.25rem;
+}
+
+.not-found-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
