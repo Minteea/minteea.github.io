@@ -32,9 +32,8 @@ export default function VideoPlayer({
   const [currentPart, setCurrentPart] = createSignal<number>(0);
   const isLanzou = () =>
     videoParts[currentPart() && currentPart() - 1]
-      ? new URL(
-          videoParts[currentPart() && currentPart() - 1],
-        ).hostname.includes("ilanzou.com")
+      ? videoParts[currentPart() && currentPart() - 1].includes("ilanzou") ||
+        videoParts[currentPart() && currentPart() - 1].includes("qaiu.top")
       : false;
 
   // Load URLs
