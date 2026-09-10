@@ -1,2 +1,2 @@
-# minteea.github.io
- Minteea的个人小网站
+# minteea.site
+Minteea的个人小网站
