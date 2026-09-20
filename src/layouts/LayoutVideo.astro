@@ -1,5 +1,5 @@
 ---
-import VideoSourcePlayer from "@components/VideoSourcePlayer";
+import VideoSourcePlayer from "@components/player/VideoSourcePlayer";
 import LayoutContent from "./LayoutContent.astro";
 import FormattedDate from "@components/FormattedDate";
 import { getPageTitle } from "@utils/getPageTitle";
@@ -14,38 +14,33 @@ const { title, description, date, cover, links } = data;
 ---
 
 <LayoutContent pageTitle={getPageTitle(title)} pageDescription={description}>
-  <header class="bg h-[120px] mb-4 flex justify-between">
-    <div class="px-4 py-4">
-      <h1>{title}</h1>
-      <div class="text-sm leading-6 flex">
+  <header class="content-header content-header--video">
+    <div class="content-header-details">
+      <h1 class="content-header-title">{title}</h1>
+      <div class="content-header-date">
         <FormattedDate client:load date={date} format="YYYY-MM-DD HH:mm:ss" />
-        <div class="video-links text-sm leading-6">
-          {
-            links && (
-              <span class="video-links-divider px-2 text-gray-500">|</span>
-            )
-          }
-          {
-            links.av && (
-              <a href={`https://bilibili.com/av${links.av}`}>av{links.av}</a>
-            )
-          }
-          {
-            links.bv && (
-              <a href={`https://bilibili.com/${links.bv}`}>{links.bv}</a>
-            )
-          }
-          {
-            links.ac && (
-              <a href={`https://acfun.cn/v/ac${links.ac}`}>ac{links.ac}</a>
-            )
-          }
-          {
-            links.mv && (
-              <a href={`https://mfuns.net/mv${links.mv}`}>mv{links.mv}</a>
-            )
-          }
-        </div>
+      </div>
+      <div class="content-header-links">
+        {
+          links.av && (
+            <a href={`https://bilibili.com/av${links.av}`}>av{links.av}</a>
+          )
+        }
+        {
+          links.bv && (
+            <a href={`https://bilibili.com/${links.bv}`}>{links.bv}</a>
+          )
+        }
+        {
+          links.ac && (
+            <a href={`https://acfun.cn/v/ac${links.ac}`}>ac{links.ac}</a>
+          )
+        }
+        {
+          links.mv && (
+            <a href={`https://mfuns.net/mv${links.mv}`}>mv{links.mv}</a>
+          )
+        }
       </div>
     </div>
     <img
@@ -53,21 +48,88 @@ const { title, description, date, cover, links } = data;
       width={"auto"}
       referrerpolicy="no-referrer"
       alt={title}
-      class="bg-gray-400 aspect-video"
+      class="content-header-cover"
     />
   </header>
-  <div class="bg mb-2">
+  <div class="content-player">
     <VideoSourcePlayer data={data as any} client:load />
   </div>
-  <main class="content bg min-h-[200px] px-4 py-4">
+  <main class="content content-main">
     <slot />
   </main>
 </LayoutContent>
 
 <style is:global lang="scss">
-  .video-links > a:nth-of-type(n + 2) {
+  .content-header.content-header--video {
+    display: flex;
+    justify-content: space-between;
+    height: 120px;
+    margin-bottom: 1rem;
+    background: var(--color-background, #ffffff);
+  }
+
+  .content-header-details {
+    padding: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+  }
+
+  .content-header-title {
+    margin-top: 0;
+  }
+
+
+  .content-header-date {
+    display: flex;
+  }
+
+  .content-header-links {
+    display: flex;
+    align-items: center;
+  }
+
+  .video-links-divider {
+    padding: 0 0.5rem;
+    color: #6b7280;
+  }
+
+  .content-header-cover {
+    width: auto;
+    background-color: #9ca3af;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .content-player {
+    margin-bottom: 0.5rem;
+    background: var(--color-background);
+  }
+
+  .content-main {
+    min-height: 200px;
+    padding: 1rem;
+    background: var(--color-background, #ffffff);
+  }
+
+  .content-header-links > a:nth-of-type(n + 2) {
     &::before {
       content: " · ";
+    }
+  }
+
+  @media (max-width: 480px) {
+    .content-header-cover{
+      display: none;
+    }
+  }
+  @media (max-width: 640px) {
+    .content-header-title {
+      font-size: 1.25rem;
+    }
+  }
+  @media (max-width: 768px) {
+    .content-header-links {
+      display: none;
     }
   }
 </style>

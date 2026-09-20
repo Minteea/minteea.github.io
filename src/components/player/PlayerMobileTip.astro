@@ -1,0 +1,29 @@
+<div class="videoplayer-mobile-tip">
+  <div>
+    <i class="ti ti-alert-circle"></i>
+    <span class="videoplayer-mobile-tip-text">建议使用电脑浏览器播放</span>
+  </div>  
+</div>
+
+<script>
+import { isMobileDevice } from "@utils/ua"
+
+  if(isMobileDevice()){
+  document.querySelectorAll<HTMLDivElement>(".videoplayer-mobile-tip").forEach((el)=> {el.style.display="flex"})
+}
+</script>
+
+<style lang="scss">
+.videoplayer-mobile-tip {
+  display: none;
+  align-items: center;
+  width: 100%;
+  height: 40px; 
+  background-color: light-dark(#ffea73, #443900);
+  margin-top: 8px;
+  padding: 0 8px
+}
+.videoplayer-mobile-tip-text {
+    padding-left: 0.25rem;
+  }
+</style>

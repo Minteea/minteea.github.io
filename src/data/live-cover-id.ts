@@ -40,6 +40,6 @@ export const liveCoverIdMap: Record<string, string> = {
     "https://i0.hdslb.com/bfs/live/new_room_cover/1ef268f7cf0ed595636300b5a73e7c97a04b2195.jpg",
 };
 
-export function getCover(id: string) {
-  return liveCoverIdMap[id];
+export function getCover(id?: string) {
+  return id ? liveCoverIdMap[id] : undefined;
 }

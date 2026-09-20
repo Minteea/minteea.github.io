@@ -9,10 +9,41 @@ const PAGE_DESCRIPTION = "Minteea的个人小站";
 ---
 
 <LayoutBase pageTitle={getPageTitle()} pageDescription={PAGE_DESCRIPTION}>
-  <Navbar transparent={true} absolute={true} class="page-navigation" />
-  <main class="not-found-page">
-    <div class="not-found-code">[404]</div>
-    <div class="not-found-message">页面未找到</div>
+  <Navbar transparent={true} absolute={true} class="page-navigation" colorMode="dark" />
+  <main class="page404-content">
+    <div class="page404-code">[404]</div>
+    <div class="page404-message">页面未找到</div>
   </main>
-  <Footer transparent={true} class="not-found-footer" />
+  <Footer transparent={true} class="page404-footer" />
 </LayoutBase>
+
+<style is:global lang="scss">
+
+.page404-content {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: light-dark(#9ca3af, var(--colordark-page-background));
+  color: light-dark(#ffffff, #a0a0a0);
+  font-weight: bold;
+  overflow: hidden;
+}
+
+.page404-code {
+  font-size: 12rem;
+}
+
+.page404-message {
+  font-size: 2.25rem;
+}
+
+.page404-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: var(--colordark-foreground);
+}
+
+</style>

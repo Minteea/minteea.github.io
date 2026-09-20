@@ -12,8 +12,9 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const isEmpty = !entry.body || entry.body.trim().length === 0;
 ---
 
-<LayoutLiveRecord data={entry.data}>
+<LayoutLiveRecord data={entry.data} isEmpty={isEmpty}>
   <Content />
 </LayoutLiveRecord>

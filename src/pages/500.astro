@@ -1,0 +1,61 @@
+---
+import Footer from "@components/Footer.astro";
+import Navbar from "@components/Navbar.astro";
+import LayoutBase from "@layouts/LayoutBase.astro";
+import { getPageTitle } from "@utils/getPageTitle";
+import "@styles/pages.scss";
+
+const PAGE_DESCRIPTION = "Minteea的个人小站";
+
+interface Props {
+  error: unknown;
+}
+
+const { error } = Astro.props;
+const message = error instanceof Error ? error.message : ""
+
+---
+
+<LayoutBase pageTitle={getPageTitle()} pageDescription={PAGE_DESCRIPTION}>
+  <Navbar transparent={true} absolute={true} class="page-navigation" colorMode="dark" />
+  <main class="page500-content">
+    <div class="page500-code">[500]</div>
+    <div class="page500-message">服务端发生错误</div>
+    <div class="page500-error">{message || "[未知错误]"}</div>
+  </main>
+  <Footer transparent={true} class="page404-footer" />
+</LayoutBase>
+
+<style is:global lang="scss">
+
+.page500-content {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: light-dark(#db5865, #49181d);
+  color: light-dark(#ffffff, #ffffffa0);
+  font-weight: bold;
+  overflow: hidden;
+}
+
+.page500-code {
+  font-size: 12rem;
+}
+
+.page500-message {
+  font-size: 2.25rem;
+}
+.page500-error {
+  font-size: 1rem;
+}
+
+.page500-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: var(--colordark-foreground);
+}
+
+</style>

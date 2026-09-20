@@ -1,5 +1,6 @@
 import { createSignal, For } from "solid-js";
 import type { VideoData } from "@utils/types";
+import "./video-player.scss";
 
 function getVideoSrc(source: string, data: VideoData, part: number = 1) {
   switch (source) {
@@ -31,36 +32,36 @@ export default function VideoSourcePlayer({ data }: { data: VideoData }) {
   const [source, setSource] = createSignal(availableSources[0] || "bilibili");
 
   return (
-    <div>
+    <div class="videoplayer videoplayer--source">
       <iframe
-        id="video-player-source"
+        id="videoplayer-embed"
         src={getVideoSrc(source(), data)}
         scrolling="no"
         frameborder="no"
         allowfullscreen={true}
-        style={{
-          width: "100%",
-          height: "100%",
-          "aspect-ratio": "16/9",
-        }}
       ></iframe>
       <hr />
-      <div class="flex px-2">
-        <div>播放源：</div>
-        <ul class="flex gap-2">
-          <For each={availableSources}>
-            {(s) => (
-              <li
-                onClick={() => {
-                  setSource(s);
-                }}
-                class={`${source() === s ? "font-bold" : ""} cursor-pointer`}
-              >
-                {s}
-              </li>
-            )}
-          </For>
-        </ul>
+      <div class="videoplayer-toolbar">
+        <div
+          class="videoplayer-toolbar-group videoplayer-toolbar-group--left"
+          data-layout="left"
+        >
+          <div>播放源：</div>
+          <ul class="videoplayer-toolbar-sources">
+            <For each={availableSources}>
+              {(s) => (
+                <li
+                  onClick={() => {
+                    setSource(s);
+                  }}
+                  class={source() === s ? "is-active" : ""}
+                >
+                  {s}
+                </li>
+              )}
+            </For>
+          </ul>
+        </div>
       </div>
     </div>
   );

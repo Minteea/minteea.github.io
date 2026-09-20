@@ -2,9 +2,10 @@ import { onMount, onCleanup, createSignal, createEffect, For } from "solid-js";
 import {
   Player,
   version as playerVersion,
-} from "../scripts/mfuns-player-meon/standard-player.es.js";
+} from "../../scripts/mfuns-player-meon/standard-player.es.js";
 import type * as MfunsPlayer from "mfuns-player-meon/mfuns-player/video-page-player.js";
 import { netdiskLink } from "@utils/resolveLink.js";
+import "./video-player.scss";
 
 declare global {
   interface Window {
@@ -118,34 +119,34 @@ export default function VideoPlayer({
   });
 
   return (
-    <div class="cursor-default">
-      <div
-        id="video-player-container"
-        ref={container}
-        style={{
-          width: "100%",
-          height: "100%",
-          "aspect-ratio": "16/9",
-        }}
-      ></div>
+    <div class="videoplayer videoplayer--meon">
+      <div id="videoplayer-container" ref={container}></div>
       <hr />
-      <div class="flex px-2 justify-between">
-        <div class="flex gap-4">
-          <a href={isLanzou() ? ILANZOU_LINK : ONEDRIVE_LINK} target="_blank">
-            网盘
+      <div class="videoplayer-toolbar">
+        <div
+          class="videoplayer-toolbar-group videoplayer-toolbar-group--left"
+          data-layout="left"
+        >
+          <a
+            href={isLanzou() ? ILANZOU_LINK : ONEDRIVE_LINK}
+            target="_blank"
+            title="网盘"
+          >
+            <i class="ti ti-cloud"></i>
+            <span class="videoplayer-toolbar-link-text">网盘</span>
           </a>
-          <a href={currentUrl()} target="_blank">
-            下载当前视频
+          <a href={currentUrl()} target="_blank" title="下载当前视频">
+            <i class="ti ti-download"></i>
+            <span class="videoplayer-toolbar-link-text">下载当前视频</span>
           </a>
-          <span class="text-gray-400">|</span>
-          <ul class="flex gap-2">
+          <span class="videoplayer-toolbar-separator">|</span>
+          <ul class="videoplayer-toolbar-parts">
             <For each={urls()}>
               {(url, i) => (
                 <a
+                  class={i() + 1 == currentPart() ? "is-current" : ""}
                   onClick={() => window.player?.plugins.part!.set(i() + 1)}
                   style={{
-                    "font-weight":
-                      i() + 1 == currentPart() ? "bold" : undefined,
                     cursor: "pointer",
                   }}
                 >
@@ -155,7 +156,6 @@ export default function VideoPlayer({
             </For>
           </ul>
         </div>
-        <div class="flex gap-2">建议使用电脑浏览器播放</div>
       </div>
     </div>
   );

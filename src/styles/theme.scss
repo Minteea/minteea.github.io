@@ -1,0 +1,29 @@
+:root {
+  color-scheme: light dark;
+  --color-foreground: light-dark(
+    var(--colorlight-foreground),
+    var(--colordark-foreground)
+  );
+  --color-background: light-dark(
+    var(--colorlight-background),
+    var(--colordark-background)
+  );
+  --color-page-background: light-dark(
+    var(--colorlight-page-background),
+    var(--colordark-page-background)
+  );
+
+  --colorlight-foreground: #000000;
+  --colorlight-background: #ffffff;
+  --colorlight-page-background: #f9f9f9;
+
+  --colordark-foreground: #ffffff;
+  --colordark-background: #000000;
+  --colordark-page-background: #202020;
+
+  --radius: 0;
+
+  --color-primary: red;
+  --color-secondary: red;
+  --color-error: red;
+}

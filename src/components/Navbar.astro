@@ -5,10 +5,11 @@ import clsx from "clsx";
 interface Props {
   transparent?: boolean;
   absolute?: boolean;
+  colorMode?: "light" | "dark",
   class?: string;
 }
 
-const { transparent, absolute, class: className = "" } = Astro.props;
+const { transparent, absolute, class: className = "" ,colorMode} = Astro.props;
 
 const currentPart = Astro.url.pathname.split("/")[1];
 
@@ -18,29 +19,33 @@ const navList: {
   matches?: string[];
   show?: boolean;
 }[] = [
-  { name: "live", label: "直播记录", show: currentPart == "live" },
-  { name: "creation", label: "创作" },
+  { name: "live", label: "直播" },
+  { name: "creation", label: "创作" , matches: ["video"] },
   { name: "profile", label: "档案" },
   { name: "blog", label: "博客", matches: ["article", "post"] },
   { name: "tools", label: "小工具" },
   { name: "about", label: "关于" },
 ];
+
+// Class Prefix: navbar-*
 ---
 
 <nav
   class={clsx("navbar", {
-    bg: !transparent,
-    absolute: absolute,
+    "bg": !transparent,
+    "absolute": absolute,
   })}
+  data-colormode={colorMode}
 >
-  <div class={clsx("navbar-content", className)}>
+  <div class={clsx("navbar-content", className)} >
     <div class="navbar-left">
       <div class="navbar-logo">
         <a href="/"><MinteeaLogo /></a>
       </div>
     </div>
     <div class="navbar-right">
-      <ul class="navbar-list">
+      
+      <ul class="navbar-list navbar-desktop-list">
         {
           navList
             .filter((n) => n.show != false)
@@ -57,13 +62,105 @@ const navList: {
             ))
         }
       </ul>
+      <button
+        class="navbar-menu-toggle"
+        type="button"
+        aria-label="打开菜单"
+        aria-expanded="false"
+      >
+        <i class="ti ti-menu-2"></i>
+      </button>
+
+      <div class="navbar-drawer-backdrop" aria-hidden="true"></div>
+
+      <aside class="navbar-drawer" aria-label="导航菜单">
+        <div class="navbar-drawer-header">
+          <span></span>
+          <button
+            class="navbar-drawer-close"
+            type="button"
+            aria-label="关闭菜单"
+          >
+            <i class="ti ti-x"></i>
+          </button>
+        </div>
+
+        <ul class="navbar-list navbar-drawer-list">
+          {
+            navList
+              .filter((n) => n.show != false)
+              .map(({ name, label, matches }) => (
+                <li
+                  class={
+                    currentPart == name || matches?.includes(currentPart)
+                      ? "is-active"
+                      : ""
+                  }
+                >
+                  <a href={`/${name}`}>{label}</a>
+                </li>
+              ))
+          }
+        </ul>
+      </aside>
+
     </div>
   </div>
 </nav>
+
+<script>
+  const navbars = document.querySelectorAll(".navbar");
+
+  navbars.forEach((navbar) => {
+    const toggle = navbar.querySelector(".navbar-menu-toggle");
+    const close = navbar.querySelector(".navbar-drawer-close");
+    const backdrop = navbar.querySelector(".navbar-drawer-backdrop");
+
+    const setDrawerOpen = (isOpen: boolean) => {
+      navbar.classList.toggle("is-menu-open", isOpen);
+      toggle?.setAttribute("aria-expanded", String(isOpen));
+      backdrop?.setAttribute("aria-hidden", String(!isOpen));
+    };
+
+    toggle?.addEventListener("click", (event) => {
+      event.stopPropagation();
+      setDrawerOpen(!navbar.classList.contains("is-menu-open"));
+    });
+
+    close?.addEventListener("click", (event) => {
+      event.stopPropagation();
+      setDrawerOpen(false);
+    });
+
+    backdrop?.addEventListener("click", () => {
+      setDrawerOpen(false);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && navbar.classList.contains("is-menu-open")) {
+        setDrawerOpen(false);
+      }
+    });
+  });
+</script>
+
 <style is:global lang="scss">
+  .navbar[data-colormode="light"] {
+    :is(.navbar-logo, .navbar-desktop-list, .navbar-menu-toggle) {
+      color: var(--colorlight-foreground);
+    }
+  }
+  .navbar[data-colormode="dark"] {
+    :is(.navbar-logo, .navbar-desktop-list, .navbar-menu-toggle) {
+      color: var(--colordark-foreground);
+    }
+  }
+
   .navbar {
-    --navbar-height: 40px;
+    --navbar-height: 48px;
     width: 100%;
+    position: relative;
+    z-index: 20;
   }
   .navbar-content {
     height: var(--navbar-height);
@@ -84,10 +181,19 @@ const navList: {
       align-items: center;
     }
   }
+  .navbar-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
   .navbar-list {
     height: 100%;
     display: flex;
-    gap: 8px;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
     li {
       height: 100%;
       a {
@@ -100,8 +206,115 @@ const navList: {
       }
     }
   }
+  .navbar-menu-toggle,
+  .navbar-drawer-close {
+    border: none;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  .navbar-menu-toggle {
+    display: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    font-size: 1.25rem;
+    &:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+  }
+  .navbar-drawer-backdrop {
+    display: none;
+  }
+  .navbar-drawer {
+    display: none;
+  }
   .minteea-logo {
-    fill: black;
+    fill: currentColor;
     height: 20px;
+  }
+
+  @media (max-width: 640px) {
+    .navbar-desktop-list {
+      padding-right: 8px;
+    }
+    .navbar-desktop-list li {
+      display: none;
+      &.is-active {
+        display: block;
+      }
+    }
+    .navbar-menu-toggle {
+      display: inline-flex;
+    }
+    .navbar-drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      display: block;
+      background: rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      z-index: 999;
+    }
+    .navbar-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(80vw, 160px);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 0 12px;
+      background: var(--color-background);
+      transform: translateX(100%);
+      transition: transform 0.2s ease;
+      z-index: 1000;
+    }
+    .navbar-drawer-header {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      padding-right: 8px;
+      justify-content: space-between;
+      height: 48px;
+      font-weight: 600;
+    }
+    .navbar-drawer-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      font-size: 1.2rem;
+      &:hover {
+        background: rgba(0, 0, 0, 0.04);
+      }
+    }
+    .navbar-drawer-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 100%;
+      li {
+        height: 40px;
+        a {
+          display: block;
+          height: 100%;
+          line-height: 40px;
+          padding: 0 12px;
+        }
+      }
+    }
+    .navbar.is-menu-open .navbar-drawer-backdrop {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .navbar.is-menu-open .navbar-drawer {
+      transform: translateX(0);
+      box-shadow: -8px 0 24px rgba(0, 0, 0, 0.18);
+    }
   }
 </style>

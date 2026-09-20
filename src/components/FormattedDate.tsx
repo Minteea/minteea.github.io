@@ -4,8 +4,8 @@ export default function FormattedDate({
   date,
   format,
 }: {
-  date: Date | string | number;
+  date?: Date | string | number;
   format: string;
 }) {
-  return <span>{dayjs(date).format(format)}</span>;
+  return <span>{date ? dayjs(date).format(format) : ""}</span>;
 }

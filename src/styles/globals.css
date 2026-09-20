@@ -1,32 +1,23 @@
 @import "./font.css";
+@import "@tabler/icons-webfont/dist/tabler-icons.min.css";
+@import "./theme.scss";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --foreground: #000000;
-  --background: #ffffff;
-  --page-background: #f0f0f0;
   --font-family: "Gotham Pro", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground: #ffffff;
-    --background: #000000;
-    --page-background: #202020;
-  }
-}
-
 body {
-  color: var(--foreground);
-  background: var(--page-background);
+  color: var(--color-foreground);
+  background: var(--color-page-background);
   font-family: var(--font-family);
 }
 
 .bg {
-  background: var(--background);
+  background: var(--color-background);
 }
 
 h1 {

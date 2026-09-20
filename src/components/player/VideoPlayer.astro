@@ -1,0 +1,47 @@
+---
+import MfunsVideoPlayer from "./MfunsVideoPlayer";
+
+interface Props {
+  title: string;
+  videoParts: string[];
+  themeColor?: string;
+}
+
+const { title, videoParts, themeColor } = Astro.props;
+---
+
+<MfunsVideoPlayer
+  client:only="solid-js"
+  videoParts={videoParts}
+  title={title}
+  themeColor={themeColor}
+/>
+<style is:global>
+  .mfuns-player .mfuns-player-videotime {
+    width: 140px;
+  }
+  .mfuns-player .mfuns-player-danmakubar {
+    display: none;
+  }
+  @media (max-width: 480px) {
+    .mfuns-player .mfuns-player-videotime {
+      width: 100px;
+    }
+    .mfuns-player .mfuns-player-button-pip,
+    .mfuns-player .mfuns-player-button-loop {
+      display: none;
+    }
+  }
+  @media (max-width: 360px) {
+    .mfuns-player-videotime {
+      position: absolute;
+      pointer-events: none;
+      top: -36px;
+      left: 0;
+      display: none;
+    }
+    .mfuns-player.is-active .mfuns-player-videotime {
+      display: block;
+    }
+  }
+</style>

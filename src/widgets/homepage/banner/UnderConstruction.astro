@@ -1,0 +1,49 @@
+<div class="homepage-banner-content" data-banner-id="UnderConstruction">
+  <div data-part="message">
+    <span>Under Construction</span>
+    <span data-part="message-separator"> | </span>
+    <span>网站施工中</span>
+  </div>
+</div>
+
+<style lang="scss">
+[data-banner-id="UnderConstruction"] {
+  background-color: #ffff33;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  [data-part="message"] {
+    width: 100%;
+    padding: 1rem;
+    background-color: #4b5563;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  [data-banner-id="UnderConstruction"] {
+    [data-part="message"] > span {
+      display: block;
+    &[data-part="message-separator"] {
+      display: none;
+    }
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-banner-id="UnderConstruction"] {
+    background-color: #4b5563;
+    [data-part="message"] {
+      background-color: #ffff33;
+      color: #000000;
+    }
+  }
+}
+
+</style>
