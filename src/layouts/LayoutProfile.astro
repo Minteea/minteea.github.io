@@ -1,0 +1,22 @@
+---
+import Navbar from "@components/Navbar.astro";
+import Footer from "@components/Footer.astro";
+import "@styles/globals.css";
+import LayoutBase from "./LayoutBase.astro";
+
+interface Props {
+  data: {
+    id: string;
+    name: string;
+  }
+}
+
+---
+
+<LayoutBase pageTitle={"data.name"} pageDescription="个人档案">
+  <Navbar class="container" />
+  <main class="flex-grow container py-10">
+    <slot />
+  </main>
+  <Footer />
+</LayoutBase>

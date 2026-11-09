@@ -20,6 +20,12 @@ importers:
       '@astrojs/ts-plugin':
         specifier: ^1.10.11
         version: 1.10.11
+      '@recoui/solid':
+        specifier: 0.1.0-alpha.1
+        version: 0.1.0-alpha.1(solid-js@1.9.15)
+      '@recoui/style':
+        specifier: 0.1.0-alpha.1
+        version: 0.1.0-alpha.1
       '@tabler/icons-webfont':
         specifier: ^3.47.0
         version: 3.47.0(chokidar@3.6.0)
@@ -794,6 +800,14 @@ packages:
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
+
+  '@recoui/solid@0.1.0-alpha.1':
+    resolution: {integrity: sha512-2IOOEMAv7uF7IaCgKQ1l/tybL0HfjT2YJzerrpPr8gmcdSBQOENFte72piRCOfohrGuRuI/2DaIsU0OUX8fmhg==}
+    peerDependencies:
+      solid-js: '>=1.8 <2'
+
+  '@recoui/style@0.1.0-alpha.1':
+    resolution: {integrity: sha512-NKoKUQIc87Ov4CYNNF3eIGaWap/9o9T1FW/2abqyhAgEv5JoxPR2hpfhUOxn8eB6yj6AyLQFdb4P5Py4p3KrLQ==}
 
   '@rolldown/binding-android-arm-eabi@1.2.7':
     resolution: {integrity: sha512-EypzgnYCwyVY4NDHKzGmNJT5b+XaQEBniHxsMdeIQLB/tcCzZnhqrzHpZFbX9iaxx+5RiB8caATBtfvZP7zVxQ==}
@@ -3577,6 +3591,14 @@ snapshots:
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
+
+  '@recoui/solid@0.1.0-alpha.1(solid-js@1.9.15)':
+    dependencies:
+      '@recoui/style': 0.1.0-alpha.1
+      clsx: 2.1.1
+      solid-js: 1.9.15
+
+  '@recoui/style@0.1.0-alpha.1': {}
 
   '@rolldown/binding-android-arm-eabi@1.2.7':
     optional: true

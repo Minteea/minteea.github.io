@@ -16,6 +16,8 @@
     "@astrojs/solid-js": "^7.0.2",
     "@astrojs/tailwind": "^6.0.2",
     "@astrojs/ts-plugin": "^1.10.11",
+    "@recoui/solid": "0.1.0-alpha.1",
+    "@recoui/style": "0.1.0-alpha.1",
     "@tabler/icons-webfont": "^3.47.0",
     "astro": "^7.3.1",
     "clsx": "^2.1.1",

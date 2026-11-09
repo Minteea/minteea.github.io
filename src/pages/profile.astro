@@ -1,6 +1,11 @@
 ---
 import LayoutContent from "@layouts/LayoutContent.astro";
 import { getPageTitle } from "@utils/getPageTitle";
+import { getEntry, render } from "astro:content";
+
+const entry = await getEntry("profile", "minteea");
+
+const { Content } = entry ? await render(entry) : { Content: null };
 
 const title = "档案";
 const PAGE_DESCRIPTION = "Minteea的个人小站";
@@ -10,5 +15,81 @@ const PAGE_DESCRIPTION = "Minteea的个人小站";
   pageTitle={getPageTitle(title)}
   pageDescription={PAGE_DESCRIPTION}
 >
-  <h1>档案</h1>
+  <div class="profile-title">
+    <div class="profile-title-avatar">
+        <img src="/profile/minteea/Minty_pt260729.avatar.png" alt="Minteea" /></div>
+    <h1 class="profile-title-name">Minteea / 薄茶</h1>
+  </div>
+  <div class="profile-container">
+    <main class="profile-content">
+      {Content && <Content />}
+    </main>
+    <aside class="profile-sidebar">
+      <div class="profile-image">
+        <img src="/profile/minteea/Minteea2025-2.0.1-1000-Head.png" alt="Minteea" />
+      </div>
+      <div class="profile-name">Minteea</div>
+      <div class="profile-info">
+        <div>身高：172cm</div>
+        <div>MBTI：INFP</div>
+        <div>发色：茶色</div>
+        <div>瞳色：紫褐色</div>
+      </div>
+    </aside>
+  </div>
 </LayoutContent>
+
+<style lang="scss" is:global>
+  .profile-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+
+    .profile-title-avatar {
+      width: 48px;
+      height: 48px;
+      background-color: var(--color-background, #ffffff);
+    }
+
+    .profile-title-name {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  }
+
+  .profile-container {
+    display: flex;
+    gap: 24px;
+
+    .profile-content {
+      flex: 1;
+    }
+
+    .profile-sidebar {
+      width: 240px;
+      .profile-name {
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+      .profile-image {
+        width: 100%;
+        height: 320px;
+        background-color: var(--color-background, #ffffff);
+        margin-bottom: 16px;
+      }
+
+      .profile-info {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        div {
+          font-size: 0.875rem;
+          color: var(--color-foreground);
+        }
+      }
+    }
+  }
+</style>

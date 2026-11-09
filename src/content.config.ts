@@ -45,4 +45,10 @@ export const collections = {
       videoParts: z.array(z.string()).nullish(),
     }),
   }),
+  profile: defineCollection({
+    loader: glob({ base: './src/content/profile', pattern: '**/*.{md,mdx}' }),
+    schema: z.object({
+      name: z.string(),
+    }),
+  }),
 };

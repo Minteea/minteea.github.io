@@ -1,0 +1,18 @@
+---
+import LayoutContent from "@layouts/LayoutContent.astro";
+import { getPageTitle } from "@utils/getPageTitle";
+const title = "约稿委托";
+const PAGE_DESCRIPTION = "Minteea的个人小站";
+---
+
+<LayoutContent
+  pageTitle={getPageTitle(title)}
+  pageDescription={PAGE_DESCRIPTION}
+>
+  <h1>约稿委托</h1>
+  <p>请问您的约稿需求是：</p>
+  <div>
+    <div>亲友低价稿位</div>
+    <div aria-disabled="true">常稿（暂不开放）</div>
+  </div>
+</LayoutContent>
