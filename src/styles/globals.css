@@ -1,5 +1,6 @@
 @import "./font.css";
 @import "@tabler/icons-webfont/dist/tabler-icons.min.css";
+@import "./icons.scss";
 @import "./theme.scss";
 
 @tailwind base;

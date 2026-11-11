@@ -1,0 +1,69 @@
+---
+
+import { latestVideo } from "../../data/homepage";
+
+---
+<div>
+  <div class="homepage-latestvideo">
+    <div class="homepage-latestvideo-info">
+      <div class="homepage-latestvideo-title">
+        {latestVideo.title}
+      </div>
+      <div class="homepage-latestvideo-detail">
+        <span class="homepage-latestvideo-detail-item" data-info="area">动画</span>
+      </div>
+      <div class="homepage-latestvideo-description">
+        {latestVideo.description}
+      </div>
+      <div class="homepage-latestvideo-link"></div>
+    </div>
+    <a class="homepage-latestvideo-cover" href={`/video/${latestVideo.slug}`}>
+      <img src={latestVideo.cover} alt={latestVideo.title} referrerpolicy="no-referrer" />
+    </a>
+  </div>
+</div>
+
+<style lang="scss">
+.homepage-latestvideo {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--color-background, #ffffff);
+  gap: 8px;
+  height: 270px;
+}
+@media (max-width: 960px) {
+  .homepage-latestvideo {
+    height: 180px;
+  }
+}
+@media (max-width: 720px) {
+  .homepage-latestvideo {
+    flex-direction: column-reverse;
+    height: auto;
+  }
+}
+.homepage-latestvideo-info {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--color-foreground);
+  
+}
+.homepage-latestvideo-title {  
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.homepage-latestvideo-description {
+  font-size: 0.875rem;
+  color: var(--color-foreground);
+}
+.homepage-latestvideo-cover {
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #9ca3af;
+  object-fit: cover;  
+}
+</style>

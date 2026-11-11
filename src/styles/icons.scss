@@ -1,0 +1,16 @@
+.ti.ti-brand-acfun {
+  display: inline-block;
+  inline-size: 1em;
+  block-size: 1em;
+  vertical-align: -0.125em;
+
+  &::before {
+    content: "";
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    background-color: currentColor;
+    -webkit-mask: url("/icon/brand-acfun.svg") center / contain no-repeat;
+    mask: url("/icon/brand-acfun.svg") center / contain no-repeat;
+  }
+}

@@ -5,6 +5,9 @@ import LayoutBase from "@layouts/LayoutBase.astro";
 import { getPageTitle } from "@utils/getPageTitle";
 import HomepageBanner from "../widgets/homepage/banner.astro";
 import "@styles/pages.scss";
+import LatestVideo from "../widgets/homepage/LatestVideo.astro";
+import RecentProjects from "../widgets/homepage/RecentProjects.astro";
+import MyLinks from "../widgets/homepage/MyLinks.astro";
 
 const PAGE_DESCRIPTION = "Minteea的个人小站";
 ---
@@ -15,13 +18,22 @@ const PAGE_DESCRIPTION = "Minteea的个人小站";
   <main class="homepage-content">
     <section class="homepage-section">
       <h1>最新投稿</h1>
+      <LatestVideo />
     </section>
     <section class="homepage-section">
       <h1>近期开发项目</h1>
+      <RecentProjects />
     </section>
     <section class="homepage-section">
       <h1>个人链接</h1>
+      <MyLinks />
     </section>
     <Footer transparent={true} class="homepage-footer" />
   </main>
 </LayoutBase>
+
+<style lang="scss" is:global>
+.homepage-section {
+  margin-block: 3rem;
+}
+</style>

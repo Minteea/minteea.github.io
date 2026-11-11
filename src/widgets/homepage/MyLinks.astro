@@ -1,0 +1,106 @@
+---
+import { myLinks } from "@data/homepage";
+---
+
+<ul class="my-links" aria-label="个人平台链接">
+  {
+    myLinks.map((link) => (
+      <li>
+        <a
+          class="my-links-card ui-box ui-border"
+          href={link.link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class:list={["my-links-icon", "ti", link.icon]} aria-hidden="true" />
+          <span class="my-links-details">
+            <span class="my-links-platform">{link.platform}</span>
+            <span class="my-links-username">{link.username}</span>
+          </span>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .my-links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 12rem));
+    justify-content: center;
+    gap: 1rem clamp(1rem, 4vw, 4rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .my-links > li {
+    min-inline-size: 0;
+  }
+
+  .my-links-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    min-inline-size: 0;
+    aspect-ratio: 1;
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    color: inherit;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .my-links-card:hover {
+    border-color: var(--color-primary);
+  }
+
+  .my-links-card:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+
+  .my-links-icon {
+    flex: 0 0 auto;
+    font-size: 3rem;
+  }
+
+  .my-links-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-inline-size: 0;
+  }
+
+  .my-links-platform {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .my-links-username {
+    font-size: 0.875rem;
+    overflow-wrap: anywhere;
+    opacity: 0.65;
+  }
+
+  @media (max-width: 640px) {
+    .my-links {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .my-links-card {
+      flex-direction: row;
+      justify-content: flex-start;
+      min-block-size: 5.5rem;
+      aspect-ratio: auto;
+      padding: 1rem;
+      text-align: start;
+    }
+
+    .my-links-icon {
+      font-size: 2.5rem;
+    }
+  }
+</style>
