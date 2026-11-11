@@ -1,8 +1,8 @@
 ---
 import VideoSourcePlayer from "@components/player/VideoSourcePlayer";
 import LayoutContent from "./LayoutContent.astro";
-import FormattedDate from "@components/FormattedDate";
 import { getPageTitle } from "@utils/getPageTitle";
+import DateText from "@components/DateText.astro";
 
 interface Props {
   data: Record<string, any>;
@@ -18,7 +18,7 @@ const { title, description, date, cover, links } = data;
     <div class="content-header-details">
       <h1 class="content-header-title">{title}</h1>
       <div class="content-header-date">
-        <FormattedDate client:load date={date} format="YYYY-MM-DD HH:mm:ss" />
+        <DateText date={date} format="YYYY-MM-DD HH:mm:ss" />
       </div>
       <div class="content-header-links">
         {

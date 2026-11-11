@@ -1,5 +1,5 @@
 ---
-import FormattedDate from "@components/FormattedDate";
+import DateText from "@components/DateText.astro";
 import type { PostData } from "@utils/types";
 
 interface Props {
@@ -14,8 +14,7 @@ const { link, data } = Astro.props;
   <div class="w-full bg p-2">
     <div class="text-base font-bold line-clamp-1">{data.title}</div>
     <div class="text-sm">
-      <FormattedDate
-        client:load
+      <DateText
         date={data.updated || data.date}
         format="YYYY-MM-DD"
       />

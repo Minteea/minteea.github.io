@@ -1,10 +1,10 @@
 ---
 import LayoutContent from "./LayoutContent.astro";
-import FormattedDate from "@components/FormattedDate";
 import { getPageTitle } from "@utils/getPageTitle";
 import VideoPlayer from "@components/player/VideoPlayer.astro";
 import { getCover } from "@data/live-cover-id";
 import PlayerMobileTip from "@components/player/PlayerMobileTip.astro";
+import DateText from "@components/DateText.astro";
 
 interface Props {
   data: Record<string, any>;
@@ -22,7 +22,7 @@ const { title, description, date, cover, coverId, videoParts, themeColor } =
     <div class="content-header-details">
       <h1 class="content-header-title">{title}</h1>
       <div class="content-header-date">
-        <FormattedDate client:load date={date} format="YYYY-MM-DD HH:mm:ss" />
+        <DateText date={date} format="YYYY-MM-DD HH:mm:ss" />
       </div>
     </div>
     <img

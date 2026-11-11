@@ -31,6 +31,7 @@ export const collections = {
           mv: z.number().nullish(),
         })
         .nullish(),
+      pieceId: z.string(),
     }),
   }),
   live: defineCollection({

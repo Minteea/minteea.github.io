@@ -1,0 +1,13 @@
+---
+import FormattedDate from "./FormattedDate"
+
+interface Props {
+  date?: Date | string | number;
+  format: string;
+}
+
+const {date, format} = Astro.props;
+
+---
+
+<FormattedDate client:only="solid-js" date={date} format={format} />

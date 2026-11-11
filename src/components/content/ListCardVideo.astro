@@ -1,5 +1,5 @@
 ---
-import FormattedDate from "@components/FormattedDate";
+import DateText from "@components/DateText.astro";
 import { getCover } from "@data/live-cover-id";
 import type { VideoData } from "@utils/types";
 
@@ -21,7 +21,7 @@ const { link, data } = Astro.props;
     <div class="listcard-video-details">
       <div class="listcard-video-title">{data.title}</div>
       <div class="listcard-video-date">
-        <FormattedDate client:load date={data.date} format="YYYY-MM-DD" />
+        <DateText date={data.date} format="YYYY-MM-DD" />
       </div>
     </div>
   </div>
